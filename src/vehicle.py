@@ -5,7 +5,7 @@ class Vehicle:
     # input should be 
     def __init__(self, name, board, fuel = 100):
         self.name = name
-        self.board = board
+        self.board = board 
         self.position = self.getPos(board)
         self.orientation = self.setOrientation()
         self.fuel = fuel
@@ -26,6 +26,7 @@ class Vehicle:
             return 'Y'
 
     # need to check head from top of the car, leftmost element of the pos list
+    # these only check for 1 position further !!!!!!!
     # check fuel, orientation, if going out of board, and if next pos is free
     # remove 1 from each ROW
     def canMoveUp(self):
@@ -59,7 +60,9 @@ class Vehicle:
             # change to new pos
             for pos in self.position:
                 pos[0] = pos[0] - 1  
-            print('MOVED')
+            self.fuel -= 1
+            self.board.updateGrid(self)
+            print('MOVED UP')
         else:
             print("cant move this car up")  
 
@@ -73,6 +76,9 @@ class Vehicle:
             self.oldposition = self.position.copy()
             for pos in self.position:
                 pos[0] = pos[0] + 1  
+            self.fuel -= 1
+            self.board.updateGrid(self)
+            print('MOVED DOWN')
         else:
             print("cant move this car down")  
 
@@ -85,6 +91,9 @@ class Vehicle:
 
             for pos in self.position:
                 pos[1] = pos[1] - 1  
+            self.fuel -= 1
+            self.board.updateGrid(self)
+            print('MOVED LEFT')
         else:
             print("cant move this car left")  
 
@@ -97,13 +106,16 @@ class Vehicle:
 
             for pos in self.position:
                 pos[1] = pos[1] + 1  
+            self.fuel -= 1
+            self.board.updateGrid(self)
+            print('MOVED RIGHT')
         else:
             print("cant move this car right")  
             
 
     def printVehicle(self):
         print(self.name, end = ' ')
-        print(self.position)
-        # print(self.fuel)
+        print(self.position, end = ' ')
+        print(self.fuel)
 
 
