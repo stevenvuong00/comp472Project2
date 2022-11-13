@@ -37,17 +37,15 @@ class Board:
                 self.vehicles[key].printVehicle()
 
                 if self.vehicles[key].canMoveRight():
-                    self.vehicles[key].printVehicle()
                     child = self.copy() # create copy of parent board
                     child.vehicles[key].right() # movement
-                    child.regenerateGrid(child.vehicles[key]) # reprint the board
+                    child.updateGrid(child.vehicles[key]) # reprint the board
                     self.children.append(child) # add child board to parent board
 
                 if self.vehicles[key].canMoveLeft():
-                    self.vehicles[key].printVehicle()
                     child = self.copy()
                     child.vehicles[key].left() # movement
-                    child.regenerateGrid(child.vehicles[key])
+                    child.updateGrid(child.vehicles[key])
                     self.children.append(child)
 
             elif self.vehicles[key].orientation == 'Y':
@@ -55,17 +53,16 @@ class Board:
                 self.vehicles[key].printVehicle()
 
                 if self.vehicles[key].canMoveDown():
-                    self.vehicles[key].printVehicle()
                     child = self.copy()
                     child.vehicles[key].down() # movement
-                    child.regenerateGrid(child.vehicles[key])
+                    child.updateGrid(child.vehicles[key])
                     self.children.append(child)                    
 
                 if self.vehicles[key].canMoveUp():
-                    self.vehicles[key].printVehicle()
                     child = self.copy()
+                    
                     child.vehicles[key].up() # movement
-                    child.regenerateGrid(child.vehicles[key])
+                    child.updateGrid(child.vehicles[key])
                     self.children.append(child)  
 
     # copy the board
