@@ -17,22 +17,24 @@ board1 = Board(input1)
 for i in range(6):
     for j in range(6):
         # check if there's a vehicle with that letter already or empty
-        if board1.grid[i][j] == "." or board1.grid[i][j] in board1.vehicleNames:
+        # if board1.grid[i][j] == "." or board1.grid[i][j] in board1.vehicleNames:
+        if board1.grid[i][j] == "." or board1.grid[i][j] in board1.vehicles:
             continue
         else:
-            board1.vehicles.append(Vehicle(board1.grid[i][j], board1))
-            board1.vehicleNames.append(board1.grid[i][j])
+            # board1.vehicles.append(Vehicle(board1.grid[i][j], board1))
+            # board1.vehicleNames.append(board1.grid[i][j])
+            board1.vehicles[board1.grid[i][j]] = Vehicle(board1.grid[i][j], board1)
+            
+# car keys
+print(board1.vehicles.keys())
 
-# print(board1.vehicleNames)
+# getting all the vehicles in a board
+for key in board1.vehicles.keys():
+    board1.vehicles[key].printVehicle()
 
-# for i in range(len(board1.vehicleNames)):
-#     board1.vehicles[i].printVehicle()
-
-# board1.vehicles[6].printVehicle()
 
 # print(" ")
-# car1 = g
-# car1 = board1.vehicles[6]
+# car1 = board1.vehicles['G']
 
 # car1.printVehicle()
 # car1.up()
@@ -42,37 +44,38 @@ for i in range(6):
 # board1.regenerateGrid(car1)
 # board1.printBoard()
 
-# cari = board1.vehicles[1]
+# cari = board1.vehicles['I']
 # cari.down()
 
 # board1.regenerateGrid(cari)
 # board1.printBoard()
 
 
-#RIGHT LEFT TESTING
-print(" ")
-cara = board1.vehicles[4]
-cara.printVehicle()
+# #RIGHT LEFT TESTING
+# print(" ")
+# cara = board1.vehicles['A']
+# # cara.printVehicle()
 
-cara.left()
-board1.regenerateGrid(cara)
-board1.printBoard()
+# cara.left()
+# board1.regenerateGrid(cara)
+# board1.printBoard()
 
-carm = board1.vehicles[5]
-carm.down()
-carm.printVehicle()
+# carm = board1.vehicles['M']
+# carm.down()
+# # carm.printVehicle()
 
-board1.regenerateGrid(carm)
-board1.printBoard()
+# board1.regenerateGrid(carm)
+# board1.printBoard()
 
-cara = board1.vehicles[4]
-cara.printVehicle()
-cara.right()
-cara.right()
+# cara = board1.vehicles['A']
+# cara.printVehicle()
 # cara.right()
-cara.printVehicle()
-# cara.left()
-# cara.left()
+# cara.right()
+# cara.right()
+# # cara.right()
+# # cara.left()
+# # cara.left()
 
-board1.regenerateGrid(cara)
-board1.printBoard()
+# board1.regenerateGrid(cara)
+# board1.printBoard()
+# board1.goal()
