@@ -34,44 +34,36 @@ class Board:
             if self.vehicles[key].orientation == 'X':
                 if self.vehicles[key].canMoveRight():
                     copy = self.copy() # used to get next board
-                    while copy.vehicles[key].canMoveLeft():
-                        child = copy.copy() # create copy of parent board
-                        child.vehicles[key].right() # movement can only move by 1
+                    while copy.vehicles[key].canMoveRight():
                         copy.vehicles[key].right() # movement in copy board
-                        copy.updateGrid(child.vehicles[key])
-                        child.updateGrid(child.vehicles[key]) # reprint the board
+                        copy.updateGrid(copy.vehicles[key])
+                        child = copy.copy() # create copy of parent board
                         self.children.append(child) # add child board to parent board
 
                 if self.vehicles[key].canMoveLeft():
                     copy = self.copy() # used to get next board
                     while copy.vehicles[key].canMoveLeft():
-                        child = copy.copy()
-                        child.vehicles[key].left() # movement
                         copy.vehicles[key].left() # movement in copy board
-                        copy.updateGrid(child.vehicles[key])
-                        child.updateGrid(child.vehicles[key])
+                        copy.updateGrid(copy.vehicles[key])
+                        child = copy.copy()
                         self.children.append(child)
 
-            elif self.vehicles[key].orientation == 'Y':
+            if self.vehicles[key].orientation == 'Y':
                 if self.vehicles[key].canMoveDown():
                     copy = self.copy() # used to get next board
                     while copy.vehicles[key].canMoveDown():
-                        child = copy.copy()
-                        child.vehicles[key].down() # movement
                         copy.vehicles[key].down() # movement in copy board
-                        copy.updateGrid(child.vehicles[key])
-                        child.updateGrid(child.vehicles[key])
+                        copy.updateGrid(copy.vehicles[key])
+                        child = copy.copy()
                         self.children.append(child)                    
 
                 if self.vehicles[key].canMoveUp():
                     copy = self.copy() # used to get next board
                     while copy.vehicles[key].canMoveUp():
-                        child = copy.copy()                
-                        child.vehicles[key].up() # movement in child board
-                        copy.vehicles[key].up() # movement in copy board
-                        copy.updateGrid(child.vehicles[key])
-                        child.updateGrid(child.vehicles[key])
-                        self.children.append(child)  
+                        copy.vehicles[key].up() # movement in child board
+                        copy.updateGrid(copy.vehicles[key])
+                        child = copy.copy()
+                        self.children.append(child) 
 
     # copy the board
     def copy(self):
