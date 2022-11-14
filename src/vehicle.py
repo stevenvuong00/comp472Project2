@@ -26,29 +26,24 @@ class Vehicle:
             return 'Y'
 
     # need to check head from top of the car, leftmost element of the pos list
-    # these only check for 1 position further !!!!!!!
     # check fuel, orientation, if going out of board, and if next pos is free
     # remove 1 from each ROW
     def canMoveUp(self):
         return self.fuel > 0 and self.orientation == 'Y' and self.position[0][0] - 1 >= 0 and self.board.grid[self.position[0][0] - 1][self.position[0][1]] == '.'
 
     # check the last element of the pos list
-    # add + 1 to each ROW
     def canMoveDown(self):
         return self.fuel > 0 and self.orientation == 'Y' and self.position[-1][0] + 1 < 6 and self.board.grid[self.position[-1][0] + 1][self.position[0][1]] == '.'
 
     # check first element of the pos list (left most pos of the car)
-    # remove 1 from each COL
     def canMoveLeft(self):
         return self.fuel > 0 and self.orientation == 'X'  and self.position[0][1] - 1 >= 0 and self.board.grid[self.position[0][0]][self.position[0][1] - 1] == '.'
 
     # check LAST element of the pos list (right most pos of the car)
-    # add 1 from each COL
     def canMoveRight(self):
         # need check col of last pos if its less than 6
         return self.fuel > 0 and self.orientation == 'X'  and self.position[-1][1] + 1 < 6 and self.board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
 
-    # only row change, col does not change
     # change state of CURRENT board
     def up(self):
         # need to check head from top

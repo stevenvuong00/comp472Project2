@@ -3,6 +3,7 @@ import copy
 
 class Board:
     def __init__(self, input = None):
+        # TODO process car fuel
         # self.board = np.array(list(input[0])).reshape((6,6)) for testing rn
         # will change back when the input is the line we read from the input file
         self.grid = np.array(list(input)).reshape((6,6))
@@ -27,16 +28,10 @@ class Board:
         if self.grid[2][5] == 'A' and self.vehicles['A'].orientation == 'X':
             print("goal state reached!")
 
-    # go through every car, generate all possible moves --> new different state for every move
+    # go through every car, generate all possible moves and boards --> new different state for every move
     def getChildren(self):
-        # try to move all cars, if can move, create new board, then move the car there
-        # make deep copy of both the board and the vehicles
-        # for new boards, set currentboard as the parent board
         for key in self.vehicles.keys():
             if self.vehicles[key].orientation == 'X':
-                # move until cant anymore --> how to implement this IMPORTANT
-                self.vehicles[key].printVehicle()
-
                 if self.vehicles[key].canMoveRight():
                     copy = self.copy() # used to get next board
                     while copy.vehicles[key].canMoveLeft():
@@ -58,9 +53,6 @@ class Board:
                         self.children.append(child)
 
             elif self.vehicles[key].orientation == 'Y':
-                # move until cant anymore --> how to implement this
-                self.vehicles[key].printVehicle()
-
                 if self.vehicles[key].canMoveDown():
                     copy = self.copy() # used to get next board
                     while copy.vehicles[key].canMoveDown():
