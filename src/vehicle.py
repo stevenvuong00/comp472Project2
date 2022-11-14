@@ -7,7 +7,7 @@ class Vehicle:
         self.name = name
         self.board = board 
         self.position = self.getPos(board)
-        self.orientation = self.setOrientation()
+        self.orientation = self.getOrientation()
         self.fuel = fuel
 
     def getPos(self, board):
@@ -18,7 +18,7 @@ class Vehicle:
                     position.append([i,j])
         return position
 
-    def setOrientation(self):
+    def getOrientation(self):
         # check same row
         if self.position[0][0] == self.position[1][0]:
             return 'X'
@@ -49,7 +49,7 @@ class Vehicle:
         return self.fuel > 0 and self.orientation == 'X'  and self.position[-1][1] + 1 < 6 and self.board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
 
     # only row change, col does not change
-    # change state of board
+    # change state of CURRENT board
     def up(self):
         # need to check head from top
         if self.canMoveUp():

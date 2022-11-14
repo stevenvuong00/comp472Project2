@@ -9,6 +9,7 @@ class Board:
         self.vehicles = {} # dict so we can get value O(1)
         self.children = []
         self.parent = None
+        self.cost = 0
 
     def updateGrid(self, car):
         positions = car.position
@@ -27,7 +28,7 @@ class Board:
             print("goal state reached!")
 
     # go through every car, generate all possible moves --> new different state for every move
-    def generateSuccessors(self):
+    def getChildren(self):
         # try to move all cars, if can move, create new board, then move the car there
         # make deep copy of both the board and the vehicles
         # for new boards, set currentboard as the parent board
@@ -37,33 +38,48 @@ class Board:
                 self.vehicles[key].printVehicle()
 
                 if self.vehicles[key].canMoveRight():
-                    child = self.copy() # create copy of parent board
-                    child.vehicles[key].right() # movement
-                    child.updateGrid(child.vehicles[key]) # reprint the board
-                    self.children.append(child) # add child board to parent board
+                    copy = self.copy() # used to get next board
+                    while copy.vehicles[key].canMoveLeft():
+                        child = copy.copy() # create copy of parent board
+                        child.vehicles[key].right() # movement can only move by 1
+                        copy.vehicles[key].right() # movement in copy board
+                        copy.updateGrid(child.vehicles[key])
+                        child.updateGrid(child.vehicles[key]) # reprint the board
+                        self.children.append(child) # add child board to parent board
 
                 if self.vehicles[key].canMoveLeft():
-                    child = self.copy()
-                    child.vehicles[key].left() # movement
-                    child.updateGrid(child.vehicles[key])
-                    self.children.append(child)
+                    copy = self.copy() # used to get next board
+                    while copy.vehicles[key].canMoveLeft():
+                        child = copy.copy()
+                        child.vehicles[key].left() # movement
+                        copy.vehicles[key].left() # movement in copy board
+                        copy.updateGrid(child.vehicles[key])
+                        child.updateGrid(child.vehicles[key])
+                        self.children.append(child)
 
             elif self.vehicles[key].orientation == 'Y':
                 # move until cant anymore --> how to implement this
                 self.vehicles[key].printVehicle()
 
                 if self.vehicles[key].canMoveDown():
-                    child = self.copy()
-                    child.vehicles[key].down() # movement
-                    child.updateGrid(child.vehicles[key])
-                    self.children.append(child)                    
+                    copy = self.copy() # used to get next board
+                    while copy.vehicles[key].canMoveDown():
+                        child = copy.copy()
+                        child.vehicles[key].down() # movement
+                        copy.vehicles[key].down() # movement in copy board
+                        copy.updateGrid(child.vehicles[key])
+                        child.updateGrid(child.vehicles[key])
+                        self.children.append(child)                    
 
                 if self.vehicles[key].canMoveUp():
-                    child = self.copy()
-                    
-                    child.vehicles[key].up() # movement
-                    child.updateGrid(child.vehicles[key])
-                    self.children.append(child)  
+                    copy = self.copy() # used to get next board
+                    while copy.vehicles[key].canMoveUp():
+                        child = copy.copy()                
+                        child.vehicles[key].up() # movement in child board
+                        copy.vehicles[key].up() # movement in copy board
+                        copy.updateGrid(child.vehicles[key])
+                        child.updateGrid(child.vehicles[key])
+                        self.children.append(child)  
 
     # copy the board
     def copy(self):

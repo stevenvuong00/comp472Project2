@@ -18,9 +18,3 @@ for line in f:
     print(fuel)
 
 
-
-
-
-
-
-
