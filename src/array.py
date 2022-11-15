@@ -1,13 +1,15 @@
 import numpy as np 
 from board import Board
 from vehicle import Vehicle
-from ucs import UCS
 
 input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
-# input1 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
+input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
 # input1 = '..I..LBBI.KLGHAAK.GHDDK.G..JEEFF.J..'
 board1 = Board(input1)
-print("Og board")
+board2 = Board(input2)
+
+
+# print("Og board")
 # board1.printBoard()
 
 # PROBABLY NEED TO REFACTOR THIS INTO A METHOD IN BOARD
@@ -19,21 +21,13 @@ for i in range(6):
             continue
         else:
             board1.vehicles[board1.grid[i][j]] = Vehicle(board1.grid[i][j], board1)
-            
-# board1.getChildren()
-# print("generated children")
-# children = board1.children
-# # print(children)
-# for child in children:
-#     print("child board")
-#     child.printBoard()
+ 
+closed = [board1.grid] # list of closed grids
+closed.append(board2.grid)
 
-# children[0].getChildren()
-# children2 = children[0].children
-# for child in children2:
-#     print("child board")
-#     child.printBoard()
+board2 = Board(input1) # new child
 
-solver1 = UCS(board1)
-solver1.search()
 
+for grid in closed:
+    if np.array_equal(grid, board2.grid):
+        print("hello")

@@ -25,8 +25,7 @@ class Board:
     # need to pass car A
     def goal(self):
         # check if car at exit is A and if the orientation is correct
-        if self.grid[2][5] == 'A' and self.vehicles['A'].orientation == 'X':
-            print("goal state reached!")
+        return self.grid[2][5] == 'A' and self.vehicles['A'].orientation == 'X'
 
     # go through every car, generate all possible moves and boards --> new different state for every move
     def getChildren(self):
@@ -68,3 +67,7 @@ class Board:
     # copy the board
     def copy(self):
         return copy.deepcopy(self)
+
+    # check board equivalence
+    def equals(self, board):
+        return np.array_equal(self.grid, board.grid)
