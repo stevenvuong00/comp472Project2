@@ -57,7 +57,6 @@ class Vehicle:
                 pos[0] = pos[0] - 1  
             self.fuel -= 1
             self.board.updateGrid(self)
-            print('MOVED UP')
         else:
             print("cant move this car up")  
 
@@ -73,7 +72,6 @@ class Vehicle:
                 pos[0] = pos[0] + 1  
             self.fuel -= 1
             self.board.updateGrid(self)
-            print('MOVED DOWN')
         else:
             print("cant move this car down")  
 
@@ -88,7 +86,6 @@ class Vehicle:
                 pos[1] = pos[1] - 1  
             self.fuel -= 1
             self.board.updateGrid(self)
-            print('MOVED LEFT')
         else:
             print("cant move this car left")  
 
@@ -103,7 +100,6 @@ class Vehicle:
                 pos[1] = pos[1] + 1  
             self.fuel -= 1
             self.board.updateGrid(self)
-            print('MOVED RIGHT')
         else:
             print("cant move this car right")  
             
