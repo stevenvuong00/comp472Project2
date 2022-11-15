@@ -25,8 +25,8 @@ class Board:
     # need to pass car A
     def goal(self):
         # check if car at exit is A and if the orientation is correct
-        if self.grid[2][5] == 'A' and self.vehicles['A'].orientation == 'X':
-            print("goal state reached!")
+        return self.vehicles['A'].orientation == 'X' and self.grid[2][5] == 'A' 
+             
 
     # go through every car, generate all possible moves and boards --> new different state for every move
     def getChildren(self):
@@ -38,6 +38,8 @@ class Board:
                         copy.vehicles[key].right() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy() # create copy of parent board
+                        child.cost += 1
+                        child.leaveParking()
                         self.children.append(child) # add child board to parent board
 
                 if self.vehicles[key].canMoveLeft():
@@ -46,6 +48,7 @@ class Board:
                         copy.vehicles[key].left() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
+                        child.cost += 1
                         self.children.append(child)
 
             if self.vehicles[key].orientation == 'Y':
@@ -55,6 +58,7 @@ class Board:
                         copy.vehicles[key].down() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
+                        child.cost += 1
                         self.children.append(child)                    
 
                 if self.vehicles[key].canMoveUp():
@@ -63,8 +67,22 @@ class Board:
                         copy.vehicles[key].up() # movement in child board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
+                        child.cost += 1
                         self.children.append(child) 
+
+    def equals(self, board):
+        return np.array_equal(self.grid, board.grid)
 
     # copy the board
     def copy(self):
         return copy.deepcopy(self)
+
+    def leaveParking(self):
+        if(self.grid[2][5] == 'A'):
+            return
+        if(self.grid[2][5] != '.' and self.vehicles[self.grid[2][5]].orientation == 'X'):
+            vehicle_name = self.grid[2][5]
+            for pos in self.vehicles[self.grid[2][5]].position:
+                self.grid[pos[0]][pos[1]] = '.'
+            self.vehicles.pop(vehicle_name)
+    
