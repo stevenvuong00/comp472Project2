@@ -1,6 +1,7 @@
 import numpy as np 
 import copy
 
+
 class Board:
     def __init__(self, input = None):
         # TODO process car fuel
@@ -12,6 +13,7 @@ class Board:
         self.parent = None
         self.cost = 0
 
+    # update self.grid with NEW car pos
     def updateGrid(self, car):
         positions = car.position
 
@@ -22,12 +24,11 @@ class Board:
     def printBoard(self):
         print(self.grid)
     
-    # need to pass car A
+    # check if the board is at a goal state
     def goal(self):
         # check if car at exit is A and if the orientation is correct
         return self.vehicles['A'].orientation == 'X' and self.grid[2][5] == 'A' 
              
-
     # go through every car, generate all possible moves and boards --> new different state for every move
     def getChildren(self):
         for key in self.vehicles.keys():
@@ -70,6 +71,7 @@ class Board:
                         child.cost += 1
                         self.children.append(child) 
 
+    # check if 2 boards: self and another board are equal
     def equals(self, board):
         return np.array_equal(self.grid, board.grid)
 
@@ -77,6 +79,7 @@ class Board:
     def copy(self):
         return copy.deepcopy(self)
 
+    # method to remove car other than A if it is at position [2][5] and it is horizontal
     def leaveParking(self):
         if(self.grid[2][5] == 'A'):
             return
@@ -86,3 +89,77 @@ class Board:
                 self.grid[pos[0]][pos[1]] = '.'
             self.vehicles.pop(vehicle_name)
     
+    # Heuristic 1: number of blocked vehicles
+    def h1(self):
+        list = []
+        posA = self.vehicles['A'].position
+        # check on the right of A
+        for i in range(6):
+            if i > posA[1][1] and self.grid[2][i] != '.': # posa[1][1] is the rightmost column of car A
+                list.append(self.grid[2][i])
+        # convert list to set
+        list = set(list)
+        return len(list) 
+
+    # Heuristic 2: number of blocked positions
+    def h2(self):
+        list = []
+        posA = self.vehicles['A'].position
+        # check on the right of A
+        for i in range(6):
+            if i > posA[1][1] and self.grid[2][i] != '.': # posa[1][1] is the rightmost column of car A
+                list.append(self.grid[2][i])
+        return len(list)      
+
+    # Heuristic 3: same as h1 but with a multiplying constant
+    def h3(self, constant):
+        list = []
+        posA = self.vehicles['A'].position
+        # check on the right of A
+        for i in range(6):
+            if i > posA[1][1] and self.grid[2][i] != '.': # posa[1][1] is the rightmost column of car A
+                list.append(self.grid[2][i])
+        # convert list to set
+        list = set(list)
+        return constant * len(list) 
+    
+    # Heuristic 4: Check for blocked vehicles, importance to them
+    # vertical free --> 1
+    # vertical 1 free --> 2
+    # vertical blocked --> 3
+    # horizontal free for the rest of the row --> 1
+    # horizontal blocked for the rest --> 2
+    def h4(self):
+        total = 0
+        list = []
+        posA = self.vehicles['A'].position
+        # check on the right of A
+        for i in range(6):
+            if i > posA[1][1] and self.grid[2][i] != '.': # posa[1][1] is the rightmost column of car A
+                list.append(self.grid[2][i])
+        # convert list to set
+        list = set(list)
+        print(list)
+        for letter in list: # letter = vehicle name
+            if self.vehicles[letter].orientation == 'Y':
+                # free car
+                if self.vehicles[letter].canMoveUp() and self.vehicles[letter].canMoveDown():
+                    print("car has 2 free move")
+                    total += 1
+                if (self.vehicles[letter].canMoveUp() and not self.vehicles[letter].canMoveDown()):
+                    print("car has 1 free move")
+                    total += 2
+                if not self.vehicles[letter].canMoveUp() and self.vehicles[letter].canMoveDown():
+                    print("car has 1 free move")
+                    total += 2
+                if not self.vehicles[letter].canMoveUp() and not self.vehicles[letter].canMoveDown():
+                    print("car has no free move")
+                    total += 3
+            else:
+                if self.vehicles[letter].canMoveRight():
+                    print("car can move right")
+                    total += 1
+                if not self.vehicles[letter].canMoveRight():
+                    print("car cant move right")
+                    total += 2
+        return total

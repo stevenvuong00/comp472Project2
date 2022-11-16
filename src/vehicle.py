@@ -103,10 +103,14 @@ class Vehicle:
         else:
             print("cant move this car right")  
             
-
     def printVehicle(self):
         print(self.name, end = ' ')
         print(self.position, end = ' ')
         print(self.fuel)
 
+    def leaveParking(self):
+        if(self.board.grid[2][5] != '.' and self.board.vehicles[self.board.grid[2][5]].orientation == 'X'):
+            for pos in self.board.vehicles[self.board.grid[2][5]].position:
+                self.board.grid[pos[0]][pos[1]] = '.'
+                self.board.vehicles.pop(self.board.grid[2][5])
 
