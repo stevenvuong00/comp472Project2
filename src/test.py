@@ -3,7 +3,8 @@ from board import Board
 from vehicle import Vehicle
 from ucs import UCS
 
-input1 = 'BBIJ....IJCC..AALMGDDKLMGH.KL.GHFFL.' # modified to test
+# input1 = 'BBIJ....IJCC..AALMGDDKLMGH.KL.GHFFL.' # modified to test
+input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
 input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
 input3 = 'C.B...C.BHHHAADD........EEGGGF.....F'
 input4= '....F...B.F.AABCF....C.....C....EE..'

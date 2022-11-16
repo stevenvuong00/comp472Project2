@@ -125,10 +125,9 @@ class Board:
     
     # Heuristic 4: Check for blocked vehicles, importance to them
     # vertical free --> 1
-    # vertical 1 free --> 2
-    # vertical blocked --> 3
-    # horizontal free for the rest of the row --> 1
-    # horizontal blocked for the rest --> 2
+    # vertical blocked --> 2
+    # horizontal free --> 1
+    # horizontal blocked --> 2
     def h4(self):
         total = 0
         list = []
@@ -154,12 +153,12 @@ class Board:
                     total += 2
                 if not self.vehicles[letter].canMoveUp() and not self.vehicles[letter].canMoveDown():
                     print("car has no free move")
-                    total += 3
+                    total += 2
             else:
-                if self.vehicles[letter].canMoveRight():
+                if self.vehicles[letter].canMoveRight() or self.grid[2][5] == letter:
                     print("car can move right")
                     total += 1
-                if not self.vehicles[letter].canMoveRight():
+                elif not self.vehicles[letter].canMoveRight():
                     print("car cant move right")
                     total += 2
         return total
