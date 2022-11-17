@@ -26,17 +26,17 @@ def createVehicles(board):
                 continue
             else:
                 board.vehicles[board.grid[i][j]] = Vehicle(board.grid[i][j], board)
-    # return board
+    return board
 
 createVehicles(board1)
 # createVehicles(board2)
 
-# UCS(board1).search()
+UCS(board1).search()
 
 # print("h1(n): {}".format(board1.h1()))
 # print("h2(n): {}".format(board1.h2()))
 # print("h3(n): {}".format(board1.h3(3)))
 # print("h4(n): {}".format(board1.h4()))
 
-GBFS(board1).search()
+# GBFS(board1).search()
 # GBFS(board2).search()
