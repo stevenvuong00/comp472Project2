@@ -7,6 +7,8 @@ class UCS:
         self.open = []
         self.closed = []
         self.lowest_cost = 0
+        self.solution_path = []
+        self.solution_cost = 0 
     
     def search(self):
         print("OG board")
@@ -19,7 +21,7 @@ class UCS:
         goal = None
         while(len(self.open) > 0):
             # Sorting the OPEN list from lowest cost
-            sorted_open = sorted(self.open, key=lambda x: x[2])
+            sorted_open = sorted(self.open, key=lambda x: x[3])
             current_node = sorted_open[0][0]
             current_node.getChildren()
             children = current_node.children
@@ -34,7 +36,7 @@ class UCS:
                 if(isVisited):
                     continue
                 else:
-                    child_node = (child, current_node, child.cost, total_cost)
+                    child_node = (child, current_node, total_cost, total_cost)
                     self.open.append(child_node)
 
             # Moving the current node to CLOSED

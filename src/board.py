@@ -11,7 +11,6 @@ class Board:
         self.vehicles = {} # dict so we can get value O(1)
         self.children = []
         self.parent = None
-        self.cost = 0
 
     # update self.grid with NEW car pos
     def updateGrid(self, car):
@@ -39,7 +38,6 @@ class Board:
                         copy.vehicles[key].right() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy() # create copy of parent board
-                        child.cost += 1
                         child.leaveParking()
                         self.children.append(child) # add child board to parent board
 
@@ -49,7 +47,6 @@ class Board:
                         copy.vehicles[key].left() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
-                        child.cost += 1
                         self.children.append(child)
 
             if self.vehicles[key].orientation == 'Y':
@@ -59,7 +56,6 @@ class Board:
                         copy.vehicles[key].down() # movement in copy board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
-                        child.cost += 1
                         self.children.append(child)                    
 
                 if self.vehicles[key].canMoveUp():
@@ -68,7 +64,6 @@ class Board:
                         copy.vehicles[key].up() # movement in child board
                         copy.updateGrid(copy.vehicles[key])
                         child = copy.copy()
-                        child.cost += 1
                         self.children.append(child) 
 
     # check if 2 boards: self and another board are equal
