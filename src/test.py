@@ -38,7 +38,8 @@ def createVehicles(board):
 #     child.printBoard()
 #     print(child.cost)
 
-UCS(createVehicles(board2)).search()
+UCS(createVehicles(board1)).search()
+# UCS(createVehicles(board2)).search()
 
 # board = createVehicles(board3)
 # board.vehicles['D'].right()
