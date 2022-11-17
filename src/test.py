@@ -3,8 +3,9 @@ from board import Board
 from vehicle import Vehicle
 from ucs import UCS
 
-# input1 = 'BBIJ....IJCC..AALMGDDKLMGH.KL.GHFFL.' # modified to test
-input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
+# input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.' # modified to test
+# input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
+input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
 input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
 input3 = 'C.B...C.BHHHAADD........EEGGGF.....F'
 input4= '....F...B.F.AABCF....C.....C....EE..'
@@ -12,8 +13,8 @@ board1 = Board(input1)
 board2 = Board(input2)
 board3 = Board(input3)
 board4 = Board(input4)
-print("Og board")
-board1.printBoard()
+# print("Og board")
+# board1.printBoard()
 
 # PROBABLY NEED TO REFACTOR THIS INTO A METHOD IN BOARD
 # Problem: circular import for board and vehicle 
@@ -25,9 +26,9 @@ def createVehicles(board):
                 continue
             else:
                 board.vehicles[board.grid[i][j]] = Vehicle(board.grid[i][j], board)
-    # return board
+    return board
 
-createVehicles(board1)
+# createVehicles(board1)
 # board1.getChildren()
 # print("generated children")
 # children = board1.children
@@ -37,7 +38,7 @@ createVehicles(board1)
 #     child.printBoard()
 #     print(child.cost)
 
-# UCS(createVehicles(board1)).search()
+UCS(createVehicles(board2)).search()
 
 # board = createVehicles(board3)
 # board.vehicles['D'].right()
@@ -52,4 +53,4 @@ createVehicles(board1)
 # print("h1(n): {}".format(board1.h1()))
 # print("h2(n): {}".format(board1.h2()))
 # print("h3(n): {}".format(board1.h3(3)))
-print("h4(n): {}".format(board1.h4()))
+# print("h4(n): {}".format(board1.h4()))
