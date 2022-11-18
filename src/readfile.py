@@ -20,7 +20,7 @@ for line in f:
     # board = np.array(list(input[0])).reshape((6,6))
     board = Board(input[0])
     createVehicles(board)
-    board.printBoard()
+    board.print_board()
     print("h4(n): {}".format(board.h4()))
     # create vehicles of the board
 

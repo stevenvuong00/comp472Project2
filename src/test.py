@@ -1,54 +1,39 @@
-import numpy as np 
+import numpy as np
 from board import Board
-from vehicle import Vehicle
 from ucs import UCS
+
+import pstats
+
+import cProfile
 
 # input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.' # modified to test
 # input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
 input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
 input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
 input3 = 'C.B...C.BHHHAADD........EEGGGF.....F'
-input4= '....F...B.F.AABCF....C.....C....EE..'
+input4 = '....F...B.F.AABCF....C.....C....EE..'
+
+input5 = 'JBBCCCJDD..MJAAL.MFFKL.N..KGGN.HH...'
+
+
 board1 = Board(input1)
 board2 = Board(input2)
 board3 = Board(input3)
 board4 = Board(input4)
-# print("Og board")
-# board1.printBoard()
+board5 = Board(input5)
 
-# PROBABLY NEED TO REFACTOR THIS INTO A METHOD IN BOARD
-# Problem: circular import for board and vehicle 
-def createVehicles(board):
-    for i in range(6):
-        for j in range(6):
-            # check if there's a vehicle with that letter already or empty
-            if board.grid[i][j] == "." or board.grid[i][j] in board.vehicles:
-                continue
-            else:
-                board.vehicles[board.grid[i][j]] = Vehicle(board.grid[i][j], board)
-    return board
 
-# createVehicles(board1)
-# board1.getChildren()
-# print("generated children")
-# children = board1.children
-# # print(children)
-# for child in children:
-#     print("child board")
-#     child.printBoard()
-#     print(child.cost)
+def run_me():
+    # UCS(board1).search()
+    # UCS(board3).search()
 
-UCS(createVehicles(board2)).search()
+    # UCS(board5).search()
 
-# board = createVehicles(board3)
-# board.vehicles['D'].right()
-# board.printBoard()
-# board.vehicles['D'].right()
-# board.printBoard()
-# board.vehicles['D'].leaveParking()
-# board.printBoard()
-# print(board1.equals(board2))
-# print(board1.equals(board3))
+    UCS(board2).search()
+
+
+run_me()
+
 
 # print("h1(n): {}".format(board1.h1()))
 # print("h2(n): {}".format(board1.h2()))
