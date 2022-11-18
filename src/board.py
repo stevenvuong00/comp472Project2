@@ -113,8 +113,8 @@ class Board:
         self.update_grid(self.vehicles[vehicle_key])
         self.leave_parking()
 
-        print('moved ' + vehicle_key + ' ' + move)
-        self.print_board()
+        # print('moved ' + vehicle_key + ' ' + move)
+        # self.print_board()
 
         new_grid = np.copy(self.grid)
         self.children.append(new_grid)
@@ -127,8 +127,8 @@ class Board:
         return self.grid
 
     # check if 2 boards: self and another board are equal
-    def equals(self, board):
-        return np.array_equal(self.grid, board.grid)
+    def equals(self, grid):
+        return np.array_equal(self.grid, grid)
 
     # copy the board
     def copy(self):
@@ -142,6 +142,15 @@ class Board:
             vehicle_name = self.grid[2][5]
             for pos in self.vehicles[self.grid[2][5]].position:
                 self.grid[pos[0]][pos[1]] = '.'
+
+    # def grid_to_string(self):
+    #     # print("".join(self.grid))
+    #     grid = ""
+    #     for list in self.grid:
+
+
+    #     return 
+
 
     # Heuristic 1: number of blocked vehicles
     def h1(self):

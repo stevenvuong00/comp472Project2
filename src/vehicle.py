@@ -54,6 +54,8 @@ class Vehicle:
                and self.orientation == 'X' \
                and self.position[-1][1] + 1 < 6 \
                and current_board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
+    # [(0,0), (1,0), (2,0)]
+    # [(0,3), (0,4), (0,5)]
 
     def move(self, current_board, direction):
         # remove from grid
