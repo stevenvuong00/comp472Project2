@@ -2,13 +2,11 @@ import numpy as np
 
 from board import Board
 
-
 def print_list(node_list):
     print("List length: {}".format(len(node_list)))
     for node in node_list:
         print("[cost: {}, total_cost: {}]".format(node[2], node[3]))
         node[0].print_board()
-
 
 class UCS:
     def __init__(self, board):
@@ -27,7 +25,7 @@ class UCS:
         # node object: (current node, parent, cost [f(n)], total_cost[g(n)])
         self.open.append((self.board.grid, None, 0, 0, 0))
 
-        total_cost = 0
+        # total_cost = 0
         x = 0
         goal = None
 
@@ -36,29 +34,35 @@ class UCS:
             self.open = sorted(self.open, key=lambda k: k[2])
             # Sorting the OPEN list from lowest cost
             # sorted_open = sorted(self.open, key=lambda x: x[2])
-            current_board = Board(self.open[0][0])
+            print(self.open[0])
+            current_node = self.open[0]
+            current_board = Board(current_node[0])
+            print("CURRENT BOARD: ", current_board.print_board())
+            print("generating children OF THIS BOARD")
             current_board.get_children()
             children = current_board.children
-            total_cost += 1
+            # total_cost += 1
             # x += 1 # TODO for search path length
             in_open = None
             # test_list = filter(self.filter_visited, children)
             # print(test_list)
-            print("generating children OF THIS BOARD")
-            current_board.print_board()
+            print("nb of kids: ", len(children))
             for child in children:
+                print()
                 print("-----------------------")
                 print("printing child")
                 print(child)
                 visited = [node for node in self.closed if np.array_equal(child, node[0])]
                 if not visited:
-                    # in_open = [node for node in self.open if child.equals(node[0])]
+                    # check if current child board is found in the open list, if so, get that node + it's index
                     for index, node in enumerate(self.open):
                         if np.array_equal(child, node[0]):
                             in_open = [node, index]
+
+                    # in_open = [node for node in self.open if np.array_equal(child, node[0])]    
                     
                     if not in_open:
-                        self.open.append((child, current_board, total_cost, total_cost, 0))
+                        self.open.append((child, current_board, current_node[3] + 1, current_node[3] + 1, 0))
                     else:
                         print()
                         print("CURRENT BOARD: new child already in open, check if g(n) is lower")
@@ -66,17 +70,17 @@ class UCS:
                         print("inopen")
                         print(in_open[0], in_open[1])
                         print(child)
-                        if in_open[0][2] > total_cost:
+                        if in_open[0][2] > current_node[3] + 1:
                             print("POPPED")
                             popped = self.open.pop(in_open[1])
                             print(popped[0])
-                            self.open.append((child, current_board, total_cost, total_cost, 0))
+                            self.open.append((child, current_board, current_node[3] + 1, current_node[3] + 1, 0))
                         else:
                             print("no popping, the one in open list is cheaper cost")
-                            continue
+                            # continue
                 else:
-                    print("already visited")     
-                    continue           
+                    print("already visited in closed list")     
+                    # continue           
             # Moving the current node to CLOSED
             self.closed.append(self.open.pop(0))
             if Board(self.closed[-1][0]).goal():
@@ -118,7 +122,14 @@ class UCS:
                     break
         
         self.solution_path.reverse()
-        print("\n Solution Path: ")
+        print("\nSolution Path: ")
         for node in self.solution_path:
-            print(node[0])
-        print("Solution cost: ", len(self.solution_path) - 1)
+            print("{} {} {} {} ".format(node[1], node[2], node[3], self.array_to_string(node[0])))
+        print("Solution cost: ", len(self.solution_path) - 1, " moves")
+
+    def array_to_string(self, array):
+        grid = ""
+        for list in array:
+            grid += "".join(list)
+
+        return grid

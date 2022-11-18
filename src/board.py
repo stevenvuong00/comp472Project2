@@ -21,6 +21,7 @@ class Board:
         self.generate_cars()
         self.original_input = input
         self.vehicle_old_pos = []
+        # self.old_vehicle = 
 
     # update self.grid with NEW car pos
     def update_grid(self, car):
@@ -122,6 +123,7 @@ class Board:
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
+        self.generate_cars()
 
     def get_normal_form(self):
         return self.grid
@@ -143,14 +145,20 @@ class Board:
             for pos in self.vehicles[self.grid[2][5]].position:
                 self.grid[pos[0]][pos[1]] = '.'
 
-    # def grid_to_string(self):
-    #     # print("".join(self.grid))
-    #     grid = ""
-    #     for list in self.grid:
+    def grid_to_string(self):
+        grid = ""
+        for list in self.grid:
+            grid += "".join(list)
 
+        return grid
 
-    #     return 
-
+    def fuel_info(self):
+        fuel = ""
+        for key in self.vehicles:
+            fuel += key + str(self.vehicles[key].fuel) + " "
+            fuel += self.vehicles[key].fuel + " "
+        
+        return fuel
 
     # Heuristic 1: number of blocked vehicles
     def h1(self):
