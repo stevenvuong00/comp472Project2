@@ -1,24 +1,23 @@
-import numpy as np 
-from board import Board
+import numpy as np
+
 
 class Vehicle:
     # input should be 
-    def __init__(self, name, board, fuel = 100):
+    def __init__(self, name, board, fuel=100):
         self.name = name
-        self.board = board 
-        self.position = self.getPos(board)
-        self.orientation = self.getOrientation()
+        self.position = self.get_pos(board)
+        self.orientation = self.get_orientation()
         self.fuel = fuel
 
-    def getPos(self, board):
+    def get_pos(self, board):
         position = []
         for i in range(6):
             for j in range(6):
                 if board.grid[i][j] == self.name:
-                    position.append([i,j])
+                    position.append([i, j])
         return position
 
-    def getOrientation(self):
+    def get_orientation(self):
         # check same row
         if self.position[0][0] == self.position[1][0]:
             return 'X'
@@ -28,89 +27,143 @@ class Vehicle:
     # need to check head from top of the car, leftmost element of the pos list
     # check fuel, orientation, if going out of board, and if next pos is free
     # remove 1 from each ROW
-    def canMoveUp(self):
-        return self.fuel > 0 and self.orientation == 'Y' and self.position[0][0] - 1 >= 0 and self.board.grid[self.position[0][0] - 1][self.position[0][1]] == '.'
+    def can_move_up(self, current_board):
+        return self.fuel > 0 \
+               and self.orientation == 'Y' \
+               and self.position[0][0] - 1 >= 0 \
+               and current_board.grid[self.position[0][0] - 1][self.position[0][1]] == '.'
 
     # check the last element of the pos list
-    def canMoveDown(self):
-        return self.fuel > 0 and self.orientation == 'Y' and self.position[-1][0] + 1 < 6 and self.board.grid[self.position[-1][0] + 1][self.position[0][1]] == '.'
+    def can_move_down(self, current_board):
+        return self.fuel > 0 \
+               and self.orientation == 'Y' \
+               and self.position[-1][0] + 1 < 6 \
+               and current_board.grid[self.position[-1][0] + 1][self.position[0][1]] == '.'
 
     # check first element of the pos list (left most pos of the car)
-    def canMoveLeft(self):
-        return self.fuel > 0 and self.orientation == 'X'  and self.position[0][1] - 1 >= 0 and self.board.grid[self.position[0][0]][self.position[0][1] - 1] == '.'
+    def can_move_left(self, current_board):
+        return self.fuel > 0 \
+               and self.orientation == 'X' \
+               and self.position[0][1] - 1 >= 0 \
+               and current_board.grid[self.position[0][0]][self.position[0][1] - 1] == '.'
 
     # check LAST element of the pos list (right most pos of the car)
-    def canMoveRight(self):
+    def can_move_right(self, current_board):
         # need check col of last pos if its less than 6
-        return self.fuel > 0 and self.orientation == 'X'  and self.position[-1][1] + 1 < 6 and self.board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
+        return self.fuel > 0 \
+               and self.orientation == 'X' \
+               and self.position[-1][1] + 1 < 6 \
+               and current_board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
+    # [(0,0), (1,0), (2,0)]
+    # [(0,3), (0,4), (0,5)]
+
+    def move(self, current_board, direction):
+        # remove from grid
+        for pos in self.position:
+            current_board.grid[pos[0]][pos[1]] = '.'
+        # new position
+        if direction == 'R':
+            for pos in self.position:
+                pos[1] = pos[1] + 1
+        elif direction == 'L':
+            for pos in self.position:
+                pos[1] = pos[1] - 1
+        elif direction == 'U':
+            for pos in self.position:
+                pos[0] = pos[0] - 1
+        elif direction == 'D':
+            for pos in self.position:
+                pos[0] = pos[0] + 1
+        # fuel and grid update
+        self.fuel -= 1
+        # current_board.update_grid(self)
+        # return current_board.grid
+
+    def reverse_move(self, current_board, direction):
+        # remove from grid
+        for pos in self.position:
+            current_board.grid[pos[0]][pos[1]] = '.'
+        # new position
+        if direction == 'R':
+            for pos in self.position:
+                pos[1] = pos[1] - 1
+        elif direction == 'L':
+            for pos in self.position:
+                pos[1] = pos[1] + 1
+        elif direction == 'U':
+            for pos in self.position:
+                pos[0] = pos[0] + 1
+        elif direction == 'D':
+            for pos in self.position:
+                pos[0] = pos[0] - 1
+
+        current_board.update_grid(self)
 
     # change state of CURRENT board
-    def up(self):
+    def up(self, current_board):
         # need to check head from top
-        if self.canMoveUp():
+        if self.can_move_up(current_board):
             # remove from grid
             for pos in self.position:
-                self.board.grid[pos[0]][pos[1]] = '.'
+                current_board.grid[pos[0]][pos[1]] = '.'
 
             # change to new pos
             for pos in self.position:
-                pos[0] = pos[0] - 1  
+                pos[0] = pos[0] - 1
             self.fuel -= 1
-            self.board.updateGrid(self)
+            current_board.update_grid(self)
         else:
-            print("cant move this car up")  
+            print("cant move this car up")
 
-    def down(self):
+    def down(self, current_board):
         # check the bottom of the car 
-        if self.canMoveDown():
+        if self.can_move_down(current_board):
             # remove from grid
             for pos in self.position:
-                self.board.grid[pos[0]][pos[1]] = '.'
+                current_board.grid[pos[0]][pos[1]] = '.'
 
-            self.oldposition = self.position.copy()
             for pos in self.position:
-                pos[0] = pos[0] + 1  
+                pos[0] = pos[0] + 1
             self.fuel -= 1
-            self.board.updateGrid(self)
+            current_board.update_grid(self)
         else:
-            print("cant move this car down")  
+            print("cant move this car down")
 
-    def left(self):
+    def left(self, current_board):
         # check the left of the car (left most index)
-        if self.canMoveLeft():
+        if self.can_move_left(current_board):
             # remove from grid
             for pos in self.position:
-                self.board.grid[pos[0]][pos[1]] = '.'
+                current_board.grid[pos[0]][pos[1]] = '.'
 
             for pos in self.position:
-                pos[1] = pos[1] - 1  
+                pos[1] = pos[1] - 1
             self.fuel -= 1
-            self.board.updateGrid(self)
+            current_board.update_grid(self)
         else:
-            print("cant move this car left")  
+            print("cant move this car left")
 
-    def right(self):
+    def right(self, current_board):
         # check the right of the car (left most index)
-        if self.canMoveRight():
+        if self.can_move_right(current_board):
             # remove from grid
             for pos in self.position:
-                self.board.grid[pos[0]][pos[1]] = '.'
+                current_board.grid[pos[0]][pos[1]] = '.'
 
             for pos in self.position:
-                pos[1] = pos[1] + 1  
+                pos[1] = pos[1] + 1
             self.fuel -= 1
-            self.board.updateGrid(self)
+            current_board.update_grid(self)
         else:
-            print("cant move this car right")  
-            
-    def printVehicle(self):
-        print(self.name, end = ' ')
-        print(self.position, end = ' ')
+            print("cant move this car right")
+
+    # def leave_parking(self, current_board):
+    #     if current_board.grid[2][5] != '.' and current_board.vehicles[current_board.grid[2][5]].orientation == 'X':
+    #         for pos in current_board.vehicles[current_board.grid[2][5]].position:
+    #             current_board.grid[pos[0]][pos[1]] = '.'
+    #             current_board.vehicles.pop(current_board.grid[2][5])
+
+    def print_vehicle(self):
+        print(self.name, end=' ')
+        print(self.position, end=' ')
         print(self.fuel)
-
-    def leaveParking(self):
-        if(self.board.grid[2][5] != '.' and self.board.vehicles[self.board.grid[2][5]].orientation == 'X'):
-            for pos in self.board.vehicles[self.board.grid[2][5]].position:
-                self.board.grid[pos[0]][pos[1]] = '.'
-                self.board.vehicles.pop(self.board.grid[2][5])
-
