@@ -3,9 +3,6 @@ import copy
 from toolz import dicttoolz
 from vehicle import Vehicle
 
-movement_history = []
-
-
 class Board:
     def __init__(self, input=None):
         # TODO process car fuel
@@ -21,7 +18,6 @@ class Board:
         self.generate_cars()
         self.original_input = input
         self.vehicle_old_pos = []
-        # self.old_vehicle = 
 
     # update self.grid with NEW car pos
     def update_grid(self, car):
@@ -30,7 +26,6 @@ class Board:
             self.grid[pos[0], pos[1]] = '.'
         for pos in positions:
             self.grid[pos[0], pos[1]] = car.name
-
 
     # method to print grid
     def print_board(self):
@@ -51,45 +46,8 @@ class Board:
         # check if car at exit is A and if the orientation is correct
         return self.vehicles['A'].orientation == 'X' and self.grid[2][5] == 'A'
 
-        # go through every car, generate all possible moves and boards --> new different state for every move
-
     def get_children(self):
         dicttoolz.keymap(self.check_moves, self.vehicles)
-        # for key in self.vehicles.keys():
-        #     if self.vehicles[key].orientation == 'X':
-        #         if self.vehicles[key].can_move_right(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_right(copy):
-        #                 copy.vehicles[key].right(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()  # create copy of parent board
-        #                 child.leave_parking()
-        #                 self.children.append(child)  # add child board to parent board
-        #
-        #         if self.vehicles[key].can_move_left(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_left(copy):
-        #                 copy.vehicles[key].left(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
-        #
-        #     if self.vehicles[key].orientation == 'Y':
-        #         if self.vehicles[key].can_move_down(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_down(copy):
-        #                 copy.vehicles[key].down(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
-        #
-        #         if self.vehicles[key].can_move_up(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_up(copy):
-        #                 copy.vehicles[key].up(copy)  # movement in child board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
 
     def check_moves(self, key):
         # add while for multi space moves
@@ -119,7 +77,6 @@ class Board:
 
         new_grid = np.copy(self.grid)
         self.children.append(new_grid)
-        # self.reset()
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
@@ -141,7 +98,6 @@ class Board:
         if self.grid[2][5] == 'A':
             return
         if self.grid[2][5] != '.' and self.vehicles[self.grid[2][5]].orientation == 'X':
-            vehicle_name = self.grid[2][5]
             for pos in self.vehicles[self.grid[2][5]].position:
                 self.grid[pos[0]][pos[1]] = '.'
 
@@ -172,8 +128,7 @@ class Board:
         list = set(list)
         return len(list)
 
-        # Heuristic 2: number of blocked positions
-
+    # Heuristic 2: number of blocked positions
     def h2(self):
         list = []
         posA = self.vehicles['A'].position
@@ -183,8 +138,7 @@ class Board:
                 list.append(self.grid[2][i])
         return len(list)
 
-        # Heuristic 3: same as h1 but with a multiplying constant
-
+    # Heuristic 3: same as h1 but with a multiplying constant
     def h3(self, constant):
         list = []
         posA = self.vehicles['A'].position
@@ -196,8 +150,7 @@ class Board:
         list = set(list)
         return constant * len(list)
 
-        # Heuristic 4: Check for blocked vehicles, importance to them
-
+    # Heuristic 4: Check for blocked vehicles, importance to them
     # vertical free --> 1
     # vertical blocked --> 2
     # horizontal free --> 1
