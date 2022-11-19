@@ -6,6 +6,7 @@ from ucs import UCS
 # input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
 input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
 input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
+# input2 = '..I...BBI.K.GH..KLGHDDKLG..JEEFF.J..'
 input3 = 'C.B...C.BHHHAADD........EEGGGF.....F'
 input4 = '....F...B.F.AABCF....C.....C....EE..'
 
@@ -26,19 +27,28 @@ def run_me():
     # UCS(board1).search()
     # UCS(board3).search()
     # print(UCS(board5).search())
-    # UCS(board2).search()
+    UCS(board2).search()
     # UCS(board6).search()
+    # UCS(board5).search()
     # UCS(board7).search()
     # UCS(board4).search()
-    print(UCS(board2).search())
+    # print(UCS(board2).search())
 
 
-# run_me()
+print("OG board")
+board2.print_board()
+# board2.check_moves("I")
+
+run_me()
+
 # board7.print_board()
-board7.check_moves("A")
-children = board7.children
-for child in children:
-    print(child)
+# board2.check_moves("A")
+
+print("")
+# children = board2.children
+# for child in children:
+#     print(child)
+
 # board7.print_board()
 # board1.print_board()
 # print(board1.grid_to_string())

@@ -67,27 +67,6 @@ class Vehicle:
         self.position =  self.position[1:] + [self.position[0]] 
         self.fuel -= 1
 
-
-    def reverse_move(self, current_board, direction):
-        # remove from grid
-        for pos in self.position:
-            current_board.grid[pos[0]][pos[1]] = '.'
-        # new position
-        if direction == 'R':
-            for pos in self.position:
-                pos[1] = pos[1] - 1
-        elif direction == 'L':
-            for pos in self.position:
-                pos[1] = pos[1] + 1
-        elif direction == 'U':
-            for pos in self.position:
-                pos[0] = pos[0] + 1
-        elif direction == 'D':
-            for pos in self.position:
-                pos[0] = pos[0] - 1
-
-        current_board.update_grid(self)
-
     # change state of CURRENT board
     def up(self, current_board):
         # need to check head from top

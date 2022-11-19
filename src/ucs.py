@@ -62,6 +62,7 @@ class UCS:
                             self.open.append((child, current_board, current_node[3] + 1, current_node[3] + 1, 0))
 
         if goal is not None:
+            print(goal)
             print("[total cost: {}]".format(goal[2]))
             end = time.time()
             print('search length: {}'.format(x))

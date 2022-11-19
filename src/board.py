@@ -81,11 +81,10 @@ class Board:
             self.grid[coords[0][0] + len(coords)][coords[0][1]] = key
             self.vehicles[key].move(self.grid, "D")
         elif move == "U":
-            self.grid[coords[1][0]][coords[1][1]] = "."
-            self.grid[coords[1][0] - len(coords)][coords[1][1]] = key
+            self.grid[coords[len(coords)-1][0]][coords[0][1]] = "."
+            self.grid[coords[0][0] - 1][coords[1][1]] = key
             self.vehicles[key].move(self.grid, "U")
             
-        self.update_grid(self.vehicles[key])
         self.leave_parking()
 
         new_grid = np.copy(self.grid)
