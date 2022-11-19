@@ -58,16 +58,13 @@ class Vehicle:
     def move(self, current_board, direction):
         if direction == 'R':
             self.position[0][1] = self.position[0][1] + len(self.position)
-            self.position = self.position[1:] + [self.position[0]]
         elif direction == 'L':
             self.position[1][1] = self.position[1][1] - len(self.position)
-            self.position =  self.position[1:] + [self.position[0]] 
         elif direction == 'U':
             self.position[1][0] -=  len(self.position)
-            self.position =  self.position[1:] + [self.position[0]] 
         elif direction == 'D':
             self.position[0][0] +=  len(self.position)
-            self.position =  self.position[1:] + [self.position[0]] 
+        self.position =  self.position[1:] + [self.position[0]] 
         self.fuel -= 1
 
 
