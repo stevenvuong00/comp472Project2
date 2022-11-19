@@ -11,7 +11,8 @@ input4 = '....F...B.F.AABCF....C.....C....EE..'
 
 input5 = 'BBBBBBKKKKKKAAECZD..ECZD......FFFFFF'
 input6 = 'BBBBBBKKKKKK.AA.....ECZD..ECZDFFFFFF'
-input7 = '.............AA.....................'
+input7 = '................A.....A.............'
+# input7 = '.............AA.....................'
 
 board1 = Board(input1)
 board2 = Board(input2)
@@ -30,7 +31,13 @@ def run_me():
     # UCS(board7).search()
     
 
-run_me()
+# run_me()
+# board7.print_board()
+board7.check_moves("A")
+children = board7.children
+for child in children:
+    print(child)
+# board7.print_board()
 # board1.print_board()
 # print(board1.grid_to_string())
 # print(board1.fuel_info())

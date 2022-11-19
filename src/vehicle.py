@@ -58,33 +58,20 @@ class Vehicle:
     # [(0,3), (0,4), (0,5)]
 
     def move(self, current_board, direction):
-        # remove from grid
-        for pos in self.position:
-            current_board.grid[pos[0]][pos[1]] = '.'
-        # new position
         if direction == 'R':
-            for pos in self.position:
-                pos[1] = pos[1] + 1
+            self.position[0][1] = self.position[0][1] + len(self.position)
+            self.position = self.position[1:] + [self.position[0]]
         elif direction == 'L':
-            for pos in self.position:
-                pos[1] = pos[1] - 1
+            self.position[1][1] = self.position[1][1] - len(self.position)
+            self.position =  self.position[1:] + [self.position[0]] 
         elif direction == 'U':
-            for pos in self.position:
-                pos[0] = pos[0] - 1
+            self.position[1][0] -=  len(self.position)
+            self.position =  self.position[1:] + [self.position[0]] 
         elif direction == 'D':
-            for pos in self.position:
-                pos[0] = pos[0] + 1
-        # fuel and grid update
+            self.position[0][0] +=  len(self.position)
+            self.position =  self.position[1:] + [self.position[0]] 
         self.fuel -= 1
-        # current_board.update_grid(self)
-        # return current_board.grid
 
-        # coords = self.vehicles[vehicle]
-        # self.state[coords[0][0]][coords[0][1]] = "."
-        # self.state[coords[0][0]][coords[0][1] + len(coords)] = vehicle
-        # self.vehicles[vehicle][0][1] = self.vehicles[vehicle][0][1] + len(coords)
-        # self.vehicles[vehicle] = self.vehicles[vehicle][1:] + [self.vehicles[vehicle][0]]
-        # self.fuel[vehicle] = self.fuel[vehicle] - 1
 
     def reverse_move(self, current_board, direction):
         # remove from grid

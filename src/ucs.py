@@ -20,11 +20,6 @@ class UCS:
         start = time.time()
         print("Searching...")
 
-        # print("OG board")
-        # self.board.print_board()
-        # print()
-
-        # node object: (current node, parent, cost [f(n)], total_cost[g(n)])
         self.open.append((self.board.grid, None, 0, 0, 0))
         print(self.open)
         # total_cost = 0

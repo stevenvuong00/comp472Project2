@@ -55,43 +55,9 @@ class Board:
 
     def get_children(self):
         dicttoolz.keymap(self.check_moves, self.vehicles)
-        # for key in self.vehicles.keys():
-        #     if self.vehicles[key].orientation == 'X':
-        #         if self.vehicles[key].can_move_right(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_right(copy):
-        #                 copy.vehicles[key].right(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()  # create copy of parent board
-        #                 child.leave_parking()
-        #                 self.children.append(child)  # add child board to parent board
-        #
-        #         if self.vehicles[key].can_move_left(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_left(copy):
-        #                 copy.vehicles[key].left(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
-        #
-        #     if self.vehicles[key].orientation == 'Y':
-        #         if self.vehicles[key].can_move_down(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_down(copy):
-        #                 copy.vehicles[key].down(copy)  # movement in copy board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
-        #
-        #         if self.vehicles[key].can_move_up(self):
-        #             copy = self.copy()  # used to get next board
-        #             while copy.vehicles[key].can_move_up(copy):
-        #                 copy.vehicles[key].up(copy)  # movement in child board
-        #                 copy.update_grid(copy.vehicles[key])
-        #                 child = copy.copy()
-        #                 self.children.append(child)
 
     def check_moves(self, key):
+
         # add while for multi space moves
         if self.vehicles[key].orientation == 'Y':
             while self.vehicles[key].can_move_down(self):
@@ -102,24 +68,36 @@ class Board:
             self.reset()
         elif self.vehicles[key].orientation == 'X':
             while self.vehicles[key].can_move_left(self):
-                self.apply_move(key, 'L')
+                self.apply_move(key, 'L')   
             self.reset()
             while self.vehicles[key].can_move_right(self):
-                self.apply_move(key, 'R')
+                self.apply_move(key, "R")
             self.reset()
 
-    def apply_move(self, vehicle_key, move):
-        self.vehicle_old_pos = self.vehicles.get(vehicle_key).get_pos(self)
-        self.vehicles[vehicle_key].move(self, move)
-        self.update_grid(self.vehicles[vehicle_key])
+    def apply_move(self, key, move):
+        coords = self.vehicles[key].position
+        if move == "R":
+            self.grid[coords[0][0]][coords[0][1]] = "."
+            self.grid[coords[0][0]][coords[0][1] + len(coords)] = key
+            self.vehicles[key].move(self.grid, "R")
+        elif move == "L":
+            self.grid[coords[1][0]][coords[1][1]] = "."
+            self.grid[coords[1][0]][coords[1][1] - len(coords)] = key
+            self.vehicles[key].move(self.grid, "L")
+        elif move == "D":
+            self.grid[coords[0][0]][coords[0][1]] = "."
+            self.grid[coords[0][0] + len(coords)][coords[0][1]] = key
+            self.vehicles[key].move(self.grid, "D")
+        elif move == "U":
+            self.grid[coords[1][0]][coords[1][1]] = "."
+            self.grid[coords[1][0] - len(coords)][coords[1][1]] = key
+            self.vehicles[key].move(self.grid, "U")
+            
+        self.update_grid(self.vehicles[key])
         self.leave_parking()
 
-        # print('moved ' + vehicle_key + ' ' + move)
-        # self.print_board()
-
         new_grid = np.copy(self.grid)
-        self.children.append(new_grid)
-        # self.reset()
+        self.children.append(new_grid)    
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
