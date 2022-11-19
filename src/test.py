@@ -2,10 +2,6 @@ import numpy as np
 from board import Board
 from ucs import UCS
 
-import pstats
-
-import cProfile
-
 # input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.' # modified to test
 # input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
 input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
@@ -28,20 +24,13 @@ board7 = Board(input7)
 def run_me():
     # UCS(board1).search()
     # UCS(board3).search()
-    UCS(board5).search()
+    # print(UCS(board5).search())
     # UCS(board2).search()
     # UCS(board6).search()
     # UCS(board7).search()
-    
+    # UCS(board4).search()
+    print(UCS(board2).search())
 
 run_me()
-# board1.print_board()
-# print(board1.grid_to_string())
-# print(board1.fuel_info())
-# print(board1.grid_to_string())
 
 
-# print("h1(n): {}".format(board1.h1()))
-# print("h2(n): {}".format(board1.h2()))
-# print("h3(n): {}".format(board1.h3(3)))
-# print("h4(n): {}".format(board1.h4()))
