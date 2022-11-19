@@ -100,7 +100,7 @@ class Board:
             while self.vehicles[key].can_move_up(self):
                 self.apply_move(key, 'U')
             self.reset()
-        if self.vehicles[key].orientation == 'X':
+        elif self.vehicles[key].orientation == 'X':
             while self.vehicles[key].can_move_left(self):
                 self.apply_move(key, 'L')
             self.reset()

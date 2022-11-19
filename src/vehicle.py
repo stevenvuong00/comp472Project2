@@ -79,6 +79,13 @@ class Vehicle:
         # current_board.update_grid(self)
         # return current_board.grid
 
+        # coords = self.vehicles[vehicle]
+        # self.state[coords[0][0]][coords[0][1]] = "."
+        # self.state[coords[0][0]][coords[0][1] + len(coords)] = vehicle
+        # self.vehicles[vehicle][0][1] = self.vehicles[vehicle][0][1] + len(coords)
+        # self.vehicles[vehicle] = self.vehicles[vehicle][1:] + [self.vehicles[vehicle][0]]
+        # self.fuel[vehicle] = self.fuel[vehicle] - 1
+
     def reverse_move(self, current_board, direction):
         # remove from grid
         for pos in self.position:
