@@ -54,8 +54,6 @@ class Vehicle:
                and self.orientation == 'X' \
                and self.position[-1][1] + 1 < 6 \
                and current_board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
-    # [(0,0), (1,0), (2,0)]
-    # [(0,3), (0,4), (0,5)]
 
     def move(self, current_board, direction):
         if direction == 'R':
@@ -150,12 +148,6 @@ class Vehicle:
             current_board.update_grid(self)
         else:
             print("cant move this car right")
-
-    # def leave_parking(self, current_board):
-    #     if current_board.grid[2][5] != '.' and current_board.vehicles[current_board.grid[2][5]].orientation == 'X':
-    #         for pos in current_board.vehicles[current_board.grid[2][5]].position:
-    #             current_board.grid[pos[0]][pos[1]] = '.'
-    #             current_board.vehicles.pop(current_board.grid[2][5])
 
     def print_vehicle(self):
         print(self.name, end=' ')
