@@ -20,8 +20,8 @@ class UCS:
         start = time.time()
         print("Searching...")
 
-        # node: (current node, parent, estimate of total cost f(n), total_cost g(n), heuristic estimation h(n))
-        self.open.append((self.board.grid, None, 0, 0, 0))
+        # node: (current node, parent, estimate of total cost f(n), total_cost g(n), heuristic estimation h(n), move)
+        self.open.append((self.board.grid, None, 0, 0, 0, None))
         x = 0 # keep for search path length?
         goal = None
 
@@ -46,20 +46,22 @@ class UCS:
 
             for child in children:
                 # check if the generated child is in closed list 
-                if not self.array_to_string(child) in self.visited_boards:
-
+                if not self.array_to_string(child[0]) in self.visited_boards:
+                    print(child)
                     in_open = None
                     # check if the generated child is in open list
                     for index, node in enumerate(self.open):
-                        if np.array_equal(child, node[0]):
+                        if np.array_equal(child[0], node[0]):
                             in_open = [node, index]
 
                     if not in_open:
-                        self.open.append((child, current_board, current_node[3] + 1, current_node[3] + 1, 0))
+                        self.open.append((child[0], current_board, current_node[3] + 1, current_node[3] + 1, 0, child[1]))
+                        # current_board.applied_moves = None
                     else:
                         if in_open[0][2] > current_node[3] + 1:
                             self.open.pop(in_open[1])
-                            self.open.append((child, current_board, current_node[3] + 1, current_node[3] + 1, 0))
+                            self.open.append((child[0], current_board, current_node[3] + 1, current_node[3] + 1, 0, child[1]))
+                            # current_board.applied_moves = None
 
         if goal is not None:
             print("[total cost: {}]".format(goal[2]))
@@ -82,13 +84,13 @@ class UCS:
     def getSolutionPath(self):
         # Start with the solution and backtrack to the start state
         goal = self.closed[-1]
-        self.solution_path.append((goal[0], goal[2], goal[3], goal[4]))
+        self.solution_path.append((goal[0], goal[2], goal[3], goal[4], goal[5]))
         parent = goal[1]
 
         while parent != None:
             for node in self.closed:
                 if parent.equals(node[0]):
-                    self.solution_path.append((node[0], node[2], node[3], node[4]))
+                    self.solution_path.append((node[0], node[2], node[3], node[4], node[5]))
                     parent = node[1]
                     break
         
@@ -96,7 +98,7 @@ class UCS:
         print("\nSolution Path: ")
         for node in self.solution_path:
             # print(node[0])
-            print("{} {} {} {} ".format(node[1], node[2], node[3], self.array_to_string(node[0])))
+            print("{} {} {} {} {}".format(node[1], node[2], node[3], self.array_to_string(node[0]), node[4]))
         print("Solution cost: ", len(self.solution_path) - 1, " moves")
 
     def array_to_string(self, array):

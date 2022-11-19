@@ -14,7 +14,7 @@ class Board:
         self.parent = None
         self.cost = 0
         self.possible_moves = []
-        self.applied_moves = []
+        self.applied_moves = ""
         self.generate_cars()
         self.original_input = input
         self.vehicle_old_pos = []
@@ -52,21 +52,33 @@ class Board:
     def check_moves(self, key):
         # add while for multi space moves
         if self.vehicles[key].orientation == 'Y':
+            distance = 0
             while self.vehicles[key].can_move_down(self):
-                self.apply_move(key, 'D')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'D', distance)
+                self.apply_move(key, 'D', distance)
             self.reset()
+            distance = 0
             while self.vehicles[key].can_move_up(self):
-                self.apply_move(key, 'U')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'U', distance)
+                self.apply_move(key, 'U', distance)
             self.reset()
         elif self.vehicles[key].orientation == 'X':
+            distance = 0
             while self.vehicles[key].can_move_left(self):
-                self.apply_move(key, 'L')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'L', distance)
+                self.apply_move(key, 'L', distance)
             self.reset()
+            distance = 0
             while self.vehicles[key].can_move_right(self):
-                self.apply_move(key, 'R')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'R', distance)
+                self.apply_move(key, 'R', distance)
             self.reset()
 
-    def apply_move(self, vehicle_key, move):
+    def apply_move(self, vehicle_key, move, distance):
         self.vehicle_old_pos = self.vehicles.get(vehicle_key).get_pos(self)
         self.vehicles[vehicle_key].move(self, move)
         self.update_grid(self.vehicles[vehicle_key])
@@ -76,11 +88,14 @@ class Board:
         # self.print_board()
 
         new_grid = np.copy(self.grid)
-        self.children.append(new_grid)
+        self.children.append((new_grid, vehicle_key + ' ' + move + ' ' + str(distance)))
+        # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
         self.generate_cars()
+        # self.applied_moves = None
+
 
     def get_normal_form(self):
         return self.grid

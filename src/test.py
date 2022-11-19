@@ -24,12 +24,12 @@ board7 = Board(input7)
 def run_me():
     # UCS(board1).search()
     # UCS(board3).search()
-    # print(UCS(board5).search())
+    print(UCS(board5).search())
     # UCS(board2).search()
     # UCS(board6).search()
     # UCS(board7).search()
     # UCS(board4).search()
-    print(UCS(board2).search())
+    # print(UCS(board2).search())
 
 run_me()
 
