@@ -26,7 +26,6 @@ class UCS:
         goal = None
 
         while len(self.open) > 0:
-
             x += 1
             # self.open = sorted(self.open, key=lambda k: k[2])
             # Remove first element from open
@@ -34,8 +33,6 @@ class UCS:
             current_board = Board(current_node[0])
             current_board.get_children()
             children = current_board.children
-            in_open = None
-            
             # Visited nodes: Moving the current node to CLOSED
             self.closed.append(current_node)
             self.visited_boards.add(self.array_to_string(current_board.grid))
@@ -47,7 +44,6 @@ class UCS:
             for child in children:
                 # check if the generated child is in closed list 
                 if not self.array_to_string(child[0]) in self.visited_boards:
-                    print(child)
                     in_open = None
                     # check if the generated child is in open list
                     for index, node in enumerate(self.open):
@@ -98,7 +94,7 @@ class UCS:
         print("\nSolution Path: ")
         for node in self.solution_path:
             # print(node[0])
-            print("{} {} {} {} {}".format(node[1], node[2], node[3], self.array_to_string(node[0]), node[4]))
+            print("{}\t{} {} {} {}".format(node[4], self.array_to_string(node[0]), node[1], node[2], node[3]))
         print("Solution cost: ", len(self.solution_path) - 1, " moves")
 
     def array_to_string(self, array):

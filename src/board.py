@@ -56,26 +56,26 @@ class Board:
             while self.vehicles[key].can_move_down(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'D', distance)
-                self.apply_move(key, 'D', distance)
+                self.apply_move(key, 'down', distance)
             self.reset()
             distance = 0
             while self.vehicles[key].can_move_up(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'U', distance)
-                self.apply_move(key, 'U', distance)
+                self.apply_move(key, 'up', distance)
             self.reset()
         elif self.vehicles[key].orientation == 'X':
             distance = 0
             while self.vehicles[key].can_move_left(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'L', distance)
-                self.apply_move(key, 'L', distance)
+                self.apply_move(key, 'left', distance)
             self.reset()
             distance = 0
             while self.vehicles[key].can_move_right(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'R', distance)
-                self.apply_move(key, 'R', distance)
+                self.apply_move(key, 'right', distance)
             self.reset()
 
     def apply_move(self, vehicle_key, move, distance):
@@ -88,7 +88,8 @@ class Board:
         # self.print_board()
 
         new_grid = np.copy(self.grid)
-        self.children.append((new_grid, vehicle_key + ' ' + move + ' ' + str(distance)))
+        movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
+        self.children.append((new_grid, movement))
         # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
