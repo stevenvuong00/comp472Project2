@@ -71,19 +71,19 @@ class Board:
         if move == "R":
             self.grid[coords[0][0]][coords[0][1]] = "."
             self.grid[coords[0][0]][coords[0][1] + len(coords)] = key
-            self.vehicles[key].move(self.grid, "R")
+            self.vehicles[key].move("R")
         elif move == "L":
             self.grid[coords[1][0]][coords[1][1]] = "."
             self.grid[coords[1][0]][coords[1][1] - len(coords)] = key
-            self.vehicles[key].move(self.grid, "L")
+            self.vehicles[key].move("L")
         elif move == "D":
             self.grid[coords[0][0]][coords[0][1]] = "."
             self.grid[coords[0][0] + len(coords)][coords[0][1]] = key
-            self.vehicles[key].move(self.grid, "D")
+            self.vehicles[key].move("D")
         elif move == "U":
             self.grid[coords[len(coords)-1][0]][coords[0][1]] = "."
             self.grid[coords[0][0] - 1][coords[1][1]] = key
-            self.vehicles[key].move(self.grid, "U")
+            self.vehicles[key].move("U")
             
         self.leave_parking()
 

@@ -55,7 +55,7 @@ class Vehicle:
                and self.position[-1][1] + 1 < 6 \
                and current_board.grid[self.position[0][0]][self.position[-1][1] + 1] == '.'
 
-    def move(self, current_board, direction):
+    def move(self, direction):
         if direction == 'R':
             self.position[0][1] = self.position[0][1] + len(self.position)
         elif direction == 'L':
@@ -66,64 +66,6 @@ class Vehicle:
             self.position[0][0] +=  len(self.position)
         self.position =  self.position[1:] + [self.position[0]] 
         self.fuel -= 1
-
-    # change state of CURRENT board
-    def up(self, current_board):
-        # need to check head from top
-        if self.can_move_up(current_board):
-            # remove from grid
-            for pos in self.position:
-                current_board.grid[pos[0]][pos[1]] = '.'
-
-            # change to new pos
-            for pos in self.position:
-                pos[0] = pos[0] - 1
-            self.fuel -= 1
-            current_board.update_grid(self)
-        else:
-            print("cant move this car up")
-
-    def down(self, current_board):
-        # check the bottom of the car 
-        if self.can_move_down(current_board):
-            # remove from grid
-            for pos in self.position:
-                current_board.grid[pos[0]][pos[1]] = '.'
-
-            for pos in self.position:
-                pos[0] = pos[0] + 1
-            self.fuel -= 1
-            current_board.update_grid(self)
-        else:
-            print("cant move this car down")
-
-    def left(self, current_board):
-        # check the left of the car (left most index)
-        if self.can_move_left(current_board):
-            # remove from grid
-            for pos in self.position:
-                current_board.grid[pos[0]][pos[1]] = '.'
-
-            for pos in self.position:
-                pos[1] = pos[1] - 1
-            self.fuel -= 1
-            current_board.update_grid(self)
-        else:
-            print("cant move this car left")
-
-    def right(self, current_board):
-        # check the right of the car (left most index)
-        if self.can_move_right(current_board):
-            # remove from grid
-            for pos in self.position:
-                current_board.grid[pos[0]][pos[1]] = '.'
-
-            for pos in self.position:
-                pos[1] = pos[1] + 1
-            self.fuel -= 1
-            current_board.update_grid(self)
-        else:
-            print("cant move this car right")
 
     def print_vehicle(self):
         print(self.name, end=' ')
