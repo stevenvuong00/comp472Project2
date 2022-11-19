@@ -2,7 +2,7 @@ import numpy as np
 
 
 class Vehicle:
-    # input should be 
+    # RIGHT NOW --> FUEL IS ALWAYS 100 even if we move, since we regenerate the cars each time we visit a board
     def __init__(self, name, board, fuel=100):
         self.name = name
         self.position = self.get_pos(board)
@@ -61,41 +61,20 @@ class Vehicle:
             current_board.grid[pos[0]][pos[1]] = '.'
 
         # new position
-        if direction == 'R':
+        if direction == 'right':
             for pos in self.position:
                 pos[1] = pos[1] + 1
-
-        elif direction == 'L':
+        elif direction == 'left':
             for pos in self.position:
                 pos[1] = pos[1] - 1
-        elif direction == 'U':
+        elif direction == 'up':
             for pos in self.position:
                 pos[0] = pos[0] - 1
-        elif direction == 'D':
+        elif direction == 'down':
             for pos in self.position:
                 pos[0] = pos[0] + 1
         # fuel and grid update
         self.fuel -= 1
-
-    def reverse_move(self, current_board, direction):
-        # remove from grid
-        for pos in self.position:
-            current_board.grid[pos[0]][pos[1]] = '.'
-        # new position
-        if direction == 'R':
-            for pos in self.position:
-                pos[1] = pos[1] - 1
-        elif direction == 'L':
-            for pos in self.position:
-                pos[1] = pos[1] + 1
-        elif direction == 'U':
-            for pos in self.position:
-                pos[0] = pos[0] + 1
-        elif direction == 'D':
-            for pos in self.position:
-                pos[0] = pos[0] - 1
-
-        current_board.update_grid(self)
 
     # change state of CURRENT board
     def up(self, current_board):

@@ -6,6 +6,8 @@ from ucs import UCS
 # input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
 input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.'
 input2 = '..I...BBI.K.GHAAKLGHDDKLG..JEEFF.J..'
+# input2 = 'BB.G.HE..G.HEAAG.I..FCCIDDF..I..F...'
+
 input3 = 'C.B...C.BHHHAADD........EEGGGF.....F'
 input4 = '....F...B.F.AABCF....C.....C....EE..'
 
@@ -24,12 +26,12 @@ board7 = Board(input7)
 def run_me():
     # UCS(board1).search()
     # UCS(board3).search()
-    # print(UCS(board5).search())
+    print(UCS(board5).search())
     # UCS(board2).search()
     # UCS(board6).search()
     # UCS(board7).search()
     # UCS(board4).search()
-    print(UCS(board2).search())
+    # print(UCS(board2).search())
 
 run_me()
 

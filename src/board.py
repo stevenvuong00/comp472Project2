@@ -4,7 +4,7 @@ from toolz import dicttoolz
 from vehicle import Vehicle
 
 class Board:
-    def __init__(self, input=None):
+    def __init__(self, input=None, fuel = None):
         # TODO process car fuel
         # self.board = np.array(list(input[0])).reshape((6,6)) for testing rn
         # will change back when the input is the line we read from the input file
@@ -14,7 +14,8 @@ class Board:
         self.parent = None
         self.cost = 0
         self.possible_moves = []
-        self.applied_moves = []
+        self.applied_moves = ""
+        self.changed_fuel = {}
         self.generate_cars()
         self.original_input = input
         self.vehicle_old_pos = []
@@ -40,6 +41,8 @@ class Board:
                     continue
                 else:
                     self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
+                    # self.vehicle_fuel[self.grid[i][j]] = self.vehicles[self.grid[i][j]].fuel
+
 
     # check if the board is at a goal state
     def goal(self):
@@ -52,21 +55,33 @@ class Board:
     def check_moves(self, key):
         # add while for multi space moves
         if self.vehicles[key].orientation == 'Y':
+            distance = 0
             while self.vehicles[key].can_move_down(self):
-                self.apply_move(key, 'D')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'D', distance)
+                self.apply_move(key, 'down', distance)
             self.reset()
+            distance = 0
             while self.vehicles[key].can_move_up(self):
-                self.apply_move(key, 'U')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'U', distance)
+                self.apply_move(key, 'up', distance)
             self.reset()
         elif self.vehicles[key].orientation == 'X':
+            distance = 0
             while self.vehicles[key].can_move_left(self):
-                self.apply_move(key, 'L')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'L', distance)
+                self.apply_move(key, 'left', distance)
             self.reset()
+            distance = 0
             while self.vehicles[key].can_move_right(self):
-                self.apply_move(key, 'R')
+                distance += 1
+                # self.applied_moves = self.apply_move(key, 'R', distance)
+                self.apply_move(key, 'right', distance)
             self.reset()
 
-    def apply_move(self, vehicle_key, move):
+    def apply_move(self, vehicle_key, move, distance):
         self.vehicle_old_pos = self.vehicles.get(vehicle_key).get_pos(self)
         self.vehicles[vehicle_key].move(self, move)
         self.update_grid(self.vehicles[vehicle_key])
@@ -76,11 +91,15 @@ class Board:
         # self.print_board()
 
         new_grid = np.copy(self.grid)
-        self.children.append(new_grid)
+        movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
+        self.children.append((new_grid, movement))
+        # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
         self.generate_cars()
+        # self.applied_moves = None
+
 
     def get_normal_form(self):
         return self.grid
