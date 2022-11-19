@@ -2,7 +2,7 @@ import numpy as np
 
 
 class Vehicle:
-    # input should be 
+    # RIGHT NOW --> FUEL IS ALWAYS 100 even if we move, since we regenerate the cars each time we visit a board
     def __init__(self, name, board, fuel=100):
         self.name = name
         self.position = self.get_pos(board)

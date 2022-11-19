@@ -4,7 +4,7 @@ from toolz import dicttoolz
 from vehicle import Vehicle
 
 class Board:
-    def __init__(self, input=None):
+    def __init__(self, input=None, fuel = None):
         # TODO process car fuel
         # self.board = np.array(list(input[0])).reshape((6,6)) for testing rn
         # will change back when the input is the line we read from the input file
@@ -15,6 +15,7 @@ class Board:
         self.cost = 0
         self.possible_moves = []
         self.applied_moves = ""
+        self.changed_fuel = {}
         self.generate_cars()
         self.original_input = input
         self.vehicle_old_pos = []
@@ -40,6 +41,8 @@ class Board:
                     continue
                 else:
                     self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
+                    # self.vehicle_fuel[self.grid[i][j]] = self.vehicles[self.grid[i][j]].fuel
+
 
     # check if the board is at a goal state
     def goal(self):
