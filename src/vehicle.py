@@ -2,7 +2,6 @@ import numpy as np
 
 
 class Vehicle:
-    # RIGHT NOW --> FUEL IS ALWAYS 100 even if we move, since we regenerate the cars each time we visit a board
     def __init__(self, name, board, fuel=100):
         self.name = name
         self.position = self.get_pos(board)
@@ -75,6 +74,7 @@ class Vehicle:
                 pos[0] = pos[0] + 1
         # fuel and grid update
         self.fuel -= 1
+        current_board.change_fuel()
 
     # change state of CURRENT board
     def up(self, current_board):

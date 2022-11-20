@@ -4,21 +4,21 @@ from toolz import dicttoolz
 from vehicle import Vehicle
 
 class Board:
-    def __init__(self, input=None, fuel = None):
-        # TODO process car fuel
+    def __init__(self, input=None, fuel = {}):
+        # TODO Will need a method initially to parse the fuel into a dict
         # self.board = np.array(list(input[0])).reshape((6,6)) for testing rn
-        # will change back when the input is the line we read from the input file
         self.grid = np.array(list(input)).reshape((6, 6))
         self.vehicles = {}  # dict so we can get value O(1)
         self.children = []
         self.parent = None
         self.cost = 0
         self.possible_moves = []
-        self.applied_moves = ""
-        self.changed_fuel = {}
-        self.generate_cars()
+        # self.applied_moves = ""
+        self.current_fuel = {} # keep track of the fuel of THIS board, will be passed down to the next boards
+        self.generate_cars(fuel)
+        self.change_fuel()
         self.original_input = input
-        self.vehicle_old_pos = []
+        self.original_fuel = dict(fuel)
 
     # update self.grid with NEW car pos
     def update_grid(self, car):
@@ -28,11 +28,16 @@ class Board:
         for pos in positions:
             self.grid[pos[0], pos[1]] = car.name
 
+    def change_fuel(self):
+        for key in self.vehicles.keys():
+            self.current_fuel[key] = self.vehicles[key].fuel
+
     # method to print grid
     def print_board(self):
         print(self.grid)
 
-    def generate_cars(self):
+    def generate_cars(self, fuel = None):
+        # fuel --> dict of all car and fuel
         self.vehicles = {}
         for i in range(6):
             for j in range(6):
@@ -40,8 +45,14 @@ class Board:
                 if self.grid[i][j] == "." or self.grid[i][j] in self.vehicles:
                     continue
                 else:
-                    self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
-                    # self.vehicle_fuel[self.grid[i][j]] = self.vehicles[self.grid[i][j]].fuel
+                    # default fuel for that specific car --> check in dict
+                    # generating car with fuel not 100
+                    keys_of_cars_changed_fuel = fuel.keys()
+                    if self.grid[i][j] in keys_of_cars_changed_fuel:
+                        self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self, fuel[self.grid[i][j]])
+                    # default fuel for that specific car 
+                    else:
+                        self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
 
 
     # check if the board is at a goal state
@@ -56,28 +67,28 @@ class Board:
         # add while for multi space moves
         if self.vehicles[key].orientation == 'Y':
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_down(self):
                 distance += 1
-                # self.applied_moves = self.apply_move(key, 'D', distance)
                 self.apply_move(key, 'down', distance)
             self.reset()
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_up(self):
                 distance += 1
-                # self.applied_moves = self.apply_move(key, 'U', distance)
                 self.apply_move(key, 'up', distance)
             self.reset()
         elif self.vehicles[key].orientation == 'X':
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_left(self):
                 distance += 1
-                # self.applied_moves = self.apply_move(key, 'L', distance)
                 self.apply_move(key, 'left', distance)
             self.reset()
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_right(self):
                 distance += 1
-                # self.applied_moves = self.apply_move(key, 'R', distance)
                 self.apply_move(key, 'right', distance)
             self.reset()
 
@@ -92,25 +103,18 @@ class Board:
 
         new_grid = np.copy(self.grid)
         movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
-        self.children.append((new_grid, movement))
+        self.children.append((new_grid, movement, self.current_fuel))
         # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
-        self.generate_cars()
-        # self.applied_moves = None
+        self.current_fuel = dict(self.original_fuel)
+        self.generate_cars(self.current_fuel)
 
-
-    def get_normal_form(self):
-        return self.grid
 
     # check if 2 boards: self and another board are equal
     def equals(self, grid):
         return np.array_equal(self.grid, grid)
-
-    # copy the board
-    def copy(self):
-        return copy.deepcopy(self)
 
     # method to remove car other than A if it is at position [2][5] and it is horizontal
     def leave_parking(self):
@@ -126,14 +130,6 @@ class Board:
             grid += "".join(list)
 
         return grid
-
-    def fuel_info(self):
-        fuel = ""
-        for key in self.vehicles:
-            fuel += key + str(self.vehicles[key].fuel) + " "
-            fuel += self.vehicles[key].fuel + " "
-        
-        return fuel
 
     # Heuristic 1: number of blocked vehicles
     def h1(self):
