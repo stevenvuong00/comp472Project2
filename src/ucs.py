@@ -23,6 +23,7 @@ class UCS:
         # node: (current node, parent, estimate of total cost f(n), total_cost g(n), heuristic estimation h(n), move)
         self.open.append((self.board.grid, None, 0, 0, 0, None))
         x = 0 # keep for search path length?
+        print(self.open[0])
         goal = None
 
         while len(self.open) > 0:
@@ -31,6 +32,11 @@ class UCS:
             # Remove first element from open
             current_node = self.open.popleft()
             current_board = Board(current_node[0])
+
+            print("fuel ")
+            for key in current_board.vehicles.keys():
+                print(current_board.vehicles[key], current_board.vehicles[key].fuel)
+
             current_board.get_children()
             children = current_board.children
             # Visited nodes: Moving the current node to CLOSED
@@ -68,15 +74,6 @@ class UCS:
             print("Unsolvable noob")
         print("-------------------------------------------------------")
 
-    def filter_visited(self, child_node):
-        return [node for node in self.closed if not child_node.equals(node[0])]
-
-    def printList(self, list):
-        print("List length: {}".format(len(list)))
-        for node in list:
-            print("[cost: {}, total_cost: {}]".format(node[2], node[3]))
-            node[0].printBoard()
-         
     def getSolutionPath(self):
         # Start with the solution and backtrack to the start state
         goal = self.closed[-1]
@@ -101,5 +98,4 @@ class UCS:
         grid = ""
         for list in array:
             grid += "".join(list)
-
         return grid

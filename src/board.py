@@ -14,11 +14,12 @@ class Board:
         self.parent = None
         self.cost = 0
         self.possible_moves = []
-        self.applied_moves = ""
+        # self.applied_moves = ""
         self.changed_fuel = {}
-        self.generate_cars()
+        self.generate_cars(fuel)
+        self.change_fuel()
         self.original_input = input
-        self.vehicle_old_pos = []
+        # self.vehicle_old_pos = []
 
     # update self.grid with NEW car pos
     def update_grid(self, car):
@@ -28,11 +29,22 @@ class Board:
         for pos in positions:
             self.grid[pos[0], pos[1]] = car.name
 
+    def change_fuel(self):
+        # changed_fuel = {}
+        for key in self.vehicles.keys():
+            # if self.vehicles[key].fuel != 100:
+            # add to changed_fuel dict 
+            self.changed_fuel[key] = self.vehicles[key].fuel
+        
+        # print(changed_fuel)
+        # return changed_fuel
+
     # method to print grid
     def print_board(self):
         print(self.grid)
 
-    def generate_cars(self):
+    def generate_cars(self, fuel = None):
+        # fuel --> dict of all car and fuel
         self.vehicles = {}
         for i in range(6):
             for j in range(6):
@@ -40,7 +52,10 @@ class Board:
                 if self.grid[i][j] == "." or self.grid[i][j] in self.vehicles:
                     continue
                 else:
-                    self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
+                    if fuel == None:
+                        self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
+                    else:
+                        self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self, fuel[self.grid[i][j]])
                     # self.vehicle_fuel[self.grid[i][j]] = self.vehicles[self.grid[i][j]].fuel
 
 
@@ -56,29 +71,37 @@ class Board:
         # add while for multi space moves
         if self.vehicles[key].orientation == 'Y':
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_down(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'D', distance)
                 self.apply_move(key, 'down', distance)
+                self.change_fuel()
             self.reset()
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_up(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'U', distance)
                 self.apply_move(key, 'up', distance)
+                self.change_fuel()
             self.reset()
         elif self.vehicles[key].orientation == 'X':
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_left(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'L', distance)
                 self.apply_move(key, 'left', distance)
+                self.change_fuel()
             self.reset()
             distance = 0
+            self.changed_fuel = {}
             while self.vehicles[key].can_move_right(self):
                 distance += 1
                 # self.applied_moves = self.apply_move(key, 'R', distance)
                 self.apply_move(key, 'right', distance)
+                self.change_fuel()
             self.reset()
 
     def apply_move(self, vehicle_key, move, distance):
