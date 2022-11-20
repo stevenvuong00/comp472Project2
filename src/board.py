@@ -1,24 +1,37 @@
 import numpy as np
-import copy
 from toolz import dicttoolz
 from vehicle import Vehicle
 
+
 class Board:
-    def __init__(self, input=None, fuel = {}):
+    io_is_done_flag = False
+
+    def __init__(self, input=None, fuel={}, parent=None, initial_config=None):
         # TODO Will need a method initially to parse the fuel into a dict
         # self.board = np.array(list(input[0])).reshape((6,6)) for testing rn
         self.grid = np.array(list(input)).reshape((6, 6))
         self.vehicles = {}  # dict so we can get value O(1)
         self.children = []
-        self.parent = None
+        self.parent = parent
         self.cost = 0
         self.possible_moves = []
         # self.applied_moves = ""
-        self.current_fuel = {} # keep track of the fuel of THIS board, will be passed down to the next boards
+        self.current_fuel = {}  # keep track of the fuel of THIS board, will be passed down to the next boards
         self.generate_cars(fuel)
         self.change_fuel()
         self.original_input = input
         self.original_fuel = dict(fuel)
+        self.initial_config = initial_config
+
+        # IO spaghetti
+        if parent is None and Board.io_is_done_flag is False:
+            print('Initial board configuration: ' + str(self.initial_config))
+            print()
+            self.print_board()
+            print()
+            print("Car fuel available: " + str(dict(self.current_fuel)))
+            print()
+            Board.io_is_done_flag = True
 
     # update self.grid with NEW car pos
     def update_grid(self, car):
@@ -36,7 +49,7 @@ class Board:
     def print_board(self):
         print(self.grid)
 
-    def generate_cars(self, fuel = None):
+    def generate_cars(self, fuel=None):
         # fuel --> dict of all car and fuel
         self.vehicles = {}
         for i in range(6):
@@ -53,7 +66,6 @@ class Board:
                     # default fuel for that specific car 
                     else:
                         self.vehicles[self.grid[i][j]] = Vehicle(self.grid[i][j], self)
-
 
     # check if the board is at a goal state
     def goal(self):
@@ -110,7 +122,6 @@ class Board:
         self.grid = np.array(list(self.original_input)).reshape((6, 6))
         self.current_fuel = dict(self.original_fuel)
         self.generate_cars(self.current_fuel)
-
 
     # check if 2 boards: self and another board are equal
     def equals(self, grid):
