@@ -48,10 +48,11 @@ board7 = Board(input7)
 # car1 = Vehicle('A', board1, 99)
 # car1.print_vehicle()
 
-# print(UCS(board1, 1).search())
+# UCS(board1, 1).search()
 # print(UCS(board5, 1).search())
 
-print(GBFS(board1, 1).search())
+GBFS(board1, 1).search()
+GBFS(board2, 1).search()
 # 
 # open = PriorityQueue()
 # open.put((2, board1))
