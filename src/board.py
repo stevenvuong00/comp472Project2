@@ -23,6 +23,8 @@ class Board:
         self.original_fuel = dict(fuel)
         self.initial_config = initial_config
         self.hn = 0
+        self.fn = 0
+        self.gn = 0
 
         # IO spaghetti
         if parent is None and Board.io_is_done_flag is False:
@@ -212,7 +214,7 @@ class Board:
         return total
 
     def __lt__(self, board):
-        return self.hn < board.hn
+        return self.fn < board.fn
 
     def apply_heuristic(self, hn):
         if(hn == "h1"):

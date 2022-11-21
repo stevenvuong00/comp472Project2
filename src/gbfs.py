@@ -70,6 +70,8 @@ class GBFS:
                         hn = child_board.apply_heuristic(heuristic)
                         gn = 0
                         fn = hn + gn
+                        child.board.fn = fn
+                        child.board.gn = gn
                         self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
                         self.open_boards.append(child_board.grid)
 

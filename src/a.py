@@ -6,8 +6,8 @@ import numpy as np
 class A:
     def __init__(self, board, puzzle_count):
         self.board = board
-        self.open = PriorityQueue()
-        self.open_boards = []
+        # self.open = PriorityQueue() self.open.queue[6]
+        self.open = []
         self.closed = []
         self.visited_boards = set()
         self.lowest_cost = 0
@@ -20,15 +20,16 @@ class A:
         hn = self.board.apply_heuristic(heuristic)
         gn = 0
         fn = hn + gn
-        self.open.put((fn, self.board, None, gn, hn, "", self.board.current_fuel))
+        self.open.append((fn, self.board, None, gn, hn, "", self.board.current_fuel))
 
         goal = None
         search_path_length = 0
-        while not self.open.empty():
+        while  len(self.open) is not 0:
+            self.open = sorted(self.open, key=lambda k: k[0])
             search_path_length += 1
 
             # First iteration - adding current node to open list
-            fn, current_board, parent_board, gn, hn, move, current_fuel = self.open.get()
+            fn, current_board, parent_board, gn, hn, move, current_fuel = self.open.pop(0)
             current_node = (fn, current_board, parent_board, gn, hn, move, current_fuel)
 
             # Marking current node as visited & adding to closed list
@@ -51,44 +52,51 @@ class A:
                 # Checking if the generated child is in the visited list - if yes, we skip it
                 if not self.array_to_string(child[0]) in self.visited_boards:
                     in_open = False
-                    for open_board in self.open_boards:
-                        if(np.array_equal(open_board, child[0])):
+                    for index, open_node in enumerate(self.open):
+                        if np.array_equal(open_node[1].grid, child[0]):
                             in_open = True
+                            child_board = Board(child[0], child[2], child[0])
+                            child_hn = child_board.apply_heuristic(heuristic)
+                            child_gn = parent_gn + 1
+                            child_fn = child_hn + child_gn
+                            if open_node[0] > child_fn:
+                                self.open.pop(index)
+                                self.open.append((child_fn, child_board, current_board, child_gn, child_hn, child[1], child[2]))
                             break
                     if in_open is False:
                         child_board = Board(child[0], child[2], child[0])
                         hn = child_board.apply_heuristic(heuristic)
                         gn = parent_gn + 1
                         fn = hn + gn
-                        self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
-                        self.open_boards.append(child[0])
-                    else:
-                        # Finding the repeated board in open list queue
-                        open_copy = []
-                        board = self.open.get()
-                        open_copy.append(board)
-                        print("looking for duplicate board in open")
-                        print("CHILD BOARD")
-                        print(child[0])
-                        while not np.array_equal(board[1].grid, child[0]):
-                            board = self.open.get()
-                            open_copy.append(board)
-                            print("BOARD FROM OPEN LIST")
-                            print(board[1].grid)
-                        print("found duplicate")
-                        print(open_copy[-1][1].grid)
+                        self.open.append((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
+                        # self.open_boards.append(child[0])
+                    # else:
+                    #     # Finding the repeated board in open list queue
+                    #     open_copy = []
+                    #     board = self.open.get()
+                    #     open_copy.append(board)
+                    #     print("looking for duplicate board in open")
+                    #     print("CHILD BOARD")
+                    #     print(child[0])
+                    #     while not np.array_equal(board[1].grid, child[0]):
+                    #         board = self.open.get()
+                    #         open_copy.append(board)
+                    #         print("BOARD FROM OPEN LIST")
+                    #         print(board[1].grid)
+                    #     print("found duplicate")
+                    #     print(open_copy[-1][1].grid)
 
-                        # Comparing the repeated board's hn with the current child and replacing it if child's hn is lower
-                        child_board = Board(child[0], child[2], child[0])
-                        child_hn = child_board.apply_heuristic(heuristic)
-                        child_gn = parent_gn + 1
-                        child_fn = child_hn + child_gn
-                        if open_copy[-1][0] > child_fn:
-                            open_copy[-1] = (child_fn, child_board, current_node[1], child_gn, child_hn, child[1], child[2])
+                    #     # Comparing the repeated board's hn with the current child and replacing it if child's hn is lower
+                    #     child_board = Board(child[0], child[2], child[0])
+                    #     child_hn = child_board.apply_heuristic(heuristic)
+                    #     child_gn = parent_gn + 1
+                    #     child_fn = child_hn + child_gn
+                    #     if open_copy[-1][0] > child_fn:
+                    #         open_copy[-1] = (child_fn, child_board, current_node[1], child_gn, child_hn, child[1], child[2])
 
-                        # Readding all nodes to the open list
-                        for open_node in open_copy:
-                            self.open.put(open_node)
+                    #     # Reading all nodes to the open list
+                    #     for open_node in open_copy:
+                    #         self.open.put(open_node)
                     
         if goal is not None:
             end = time.time()
