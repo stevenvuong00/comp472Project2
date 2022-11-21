@@ -18,7 +18,8 @@ def fn(fuel):
 
 
 def do_ucs():
-    f = open('../Sample/sample-input.txt')
+    # f = open('../Sample/sample-input.txt')
+    f = open('Sample/sample-input.txt')
     # f = open('../Sample/test-input.txt')
     original_stdout = sys.stdout
     count = 0
@@ -29,7 +30,8 @@ def do_ucs():
         count = count + 1
         board_input = input_received[0]
         fuel_dict = parse_fuel(input_received[1:])
-        output_solution_file = "../output_files/ucs-solution-" + str(count) + ".txt"
+        # output_solution_file = "../output_files/ucs-solution-" + str(count) + ".txt"
+        output_solution_file = "output_files/ucs-solution-" + str(count) + ".txt"
         f_sol = open(output_solution_file, "w")
         sys.stdout = f_sol
         UCS(Board(board_input, fuel_dict, None, line), count).search()

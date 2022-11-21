@@ -115,7 +115,7 @@ class Board:
 
         new_grid = np.copy(self.grid)
         movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
-        self.children.append((new_grid, movement, self.current_fuel))
+        self.children.append((new_grid, movement, dict(self.current_fuel)))
         # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):

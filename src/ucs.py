@@ -1,7 +1,5 @@
 import numpy as np
-
 from board import Board
-
 import time
 from collections import deque
 
@@ -16,12 +14,14 @@ class UCS:
         self.solution_path = []
         self.solution_cost = 0
 
-        self.output_search_file = "../output_files/ucs-search-" + str(puzzle_count) + ".txt"
-        self.output_solution_file = "../output_files/ucs-solution-" + str(puzzle_count) + ".txt"
+        # self.output_search_file = "../output_files/ucs-search-" + str(puzzle_count) + ".txt"
+        # self.output_solution_file = "../output_files/ucs-solution-" + str(puzzle_count) + ".txt"
+
+        self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
+        self.output_solution_file = "output_files/ucs-solution-" + str(puzzle_count) + ".txt"
 
     def search(self):
         start = time.time()
-        print("Searching...")
 
         # root node: (current node, parent, f(n), g(n), h(n), movement, fuel)
         self.open.append((self.board.grid, None, 0, 0, 0, "", self.board.current_fuel))
