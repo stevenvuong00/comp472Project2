@@ -27,6 +27,8 @@ class GBFS:
         gn = 0
         fn = hn + gn
         self.open.put((fn, self.board, None, gn, hn, "", self.board.current_fuel))
+        # self.open.put((fn, self.board, None, gn, hn, "", self.board.current_fuel))
+        
         x = 0  # keep for search path length?
         goal = None
 
@@ -39,21 +41,29 @@ class GBFS:
             # Remove first element from open
             current_node = self.open.get()
             print()
-            print("CURRENT NODE")
+            print("VISITING NEW BOARD")
+            print("q size: ", self.open.qsize())
+            print("CURRENT NODE + board")
+            current_board = current_node[1]
             print(current_node)
+            print(current_board.grid)
             # current_board = Board(current_node[1], current_node[6], current_node[1])
 
-            current_node[1].get_children()
-            children = current_node[1].children
+            current_board.get_children()
+            children = current_board.children
             # Visited nodes: Moving the current node to CLOSED
             self.closed.append(current_node)
-            self.visited_boards.add(self.array_to_string(current_node[1].grid))
+            self.visited_boards.add(self.array_to_string(current_board.grid))
+            
             f_search.write("{} {} {}\t{} {}".format(current_node[2], current_node[3], current_node[0],
                                              self.array_to_string(current_node[1].grid),
                                              self.process_fuel(current_node[6])))
             f_search.write("\n")
+            print("CLOSED CHECKING GOAL ")
+            self.closed[-1][1].print_board()
             if self.closed[-1][1].goal():
                 goal = self.closed[-1]
+                print('reached GOAL')
                 self.get_solution_path()
                 break
 
@@ -73,8 +83,8 @@ class GBFS:
                     hn = child_board.h1()
                     gn = 0
                     fn = hn + gn
-                    print("printing child board fuel")
-                    print(child_board.current_fuel)
+                    # print("printing child board fuel")
+                    # print(child_board.current_fuel)
                     print("fn: ", fn)
                     self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
                     # current_board.applied_moves = None
@@ -102,12 +112,17 @@ class GBFS:
     def get_solution_path(self):
         # Start with the solution and backtrack to the start state
         goal = self.closed[-1]
+        print(goal)
         self.solution_path.append((goal[1], goal[5], goal[6]))
         parent = goal[2]
-
-        while parent is not None:
+        print(parent)
+        print(parent.grid)
+        x = 1
+        # while parent is not None:
+        while x > 0:
+            x -= 1
             for node in self.closed:
-                if parent.equals(node[0]):
+                if parent.equals(node[1]):
                     self.solution_path.append((node[1], node[5], node[6]))
                     parent = node[2]
                     break

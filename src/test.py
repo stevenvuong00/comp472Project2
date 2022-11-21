@@ -52,13 +52,13 @@ board7 = Board(input7)
 # print(UCS(board5, 1).search())
 
 print(GBFS(board1, 1).search())
-
+# 
 # open = PriorityQueue()
 # open.put((2, board1))
 # open.put((3, board2))
 
 # x = open.get()
-# print(x)
+# print(open)
 
 
 
