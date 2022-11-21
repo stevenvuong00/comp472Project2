@@ -28,7 +28,7 @@ class Board:
         if parent is None and Board.io_is_done_flag is False:
             print('Initial board configuration: ' + str(self.initial_config))
             print()
-            self.print_board()
+            # self.print_board()
             print()
             print("Car fuel available: " + str(dict(self.current_fuel)))
             print()
@@ -167,7 +167,7 @@ class Board:
         return len(list)
 
     # Heuristic 3: same as h1 but with a multiplying constant
-    def h3(self, constant):
+    def h3(self):
         list = []
         posA = self.vehicles['A'].position
         # check on the right of A
@@ -176,7 +176,7 @@ class Board:
                 list.append(self.grid[2][i])
         # convert list to set
         list = set(list)
-        return constant * len(list)
+        return 3 * len(list)
 
     # Heuristic 4: Check for blocked vehicles, importance to them
     # vertical free --> 1
@@ -193,30 +193,33 @@ class Board:
                 list.append(self.grid[2][i])
         # convert list to set
         list = set(list)
-        print(list)
         for letter in list:  # letter = vehicle name
             if self.vehicles[letter].orientation == 'Y':
                 # free car
-                if self.vehicles[letter].can_move_up() and self.vehicles[letter].can_move_down():
-                    print("car has 2 free move")
+                if self.vehicles[letter].can_move_up(self) and self.vehicles[letter].can_move_down(self):
                     total += 1
-                if (self.vehicles[letter].can_move_up() and not self.vehicles[letter].can_move_down()):
-                    print("car has 1 free move")
+                if (self.vehicles[letter].can_move_up(self) and not self.vehicles[letter].can_move_down(self)):
                     total += 2
-                if not self.vehicles[letter].can_move_up() and self.vehicles[letter].can_move_down():
-                    print("car has 1 free move")
+                if not self.vehicles[letter].can_move_up(self) and self.vehicles[letter].can_move_down(self):
                     total += 2
-                if not self.vehicles[letter].can_move_up() and not self.vehicles[letter].can_move_down():
-                    print("car has no free move")
+                if not self.vehicles[letter].can_move_up(self) and not self.vehicles[letter].can_move_down(self):
                     total += 2
             else:
-                if self.vehicles[letter].can_move_right() or self.grid[2][5] == letter:
-                    print("car can move right")
+                if self.vehicles[letter].can_move_right(self) or self.grid[2][5] == letter:
                     total += 1
-                elif not self.vehicles[letter].can_move_right():
-                    print("car cant move right")
+                elif not self.vehicles[letter].can_move_right(self):
                     total += 2
         return total
 
     def __lt__(self, board):
         return self.hn < board.hn
+
+    def apply_heuristic(self, hn):
+        if(hn == "h1"):
+            return self.h1()
+        elif(hn == "h2"):
+            return self.h2()
+        elif(hn == "h3"):
+            return self.h3()
+        elif(hn == "h4"):
+            return self.h4()

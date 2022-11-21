@@ -4,6 +4,7 @@ from ucs import UCS
 from vehicle import Vehicle
 from gbfs import GBFS
 from queue import PriorityQueue
+from a import A
 
 
 # input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.' # modified to test
@@ -51,8 +52,8 @@ board7 = Board(input7)
 # UCS(board1, 1).search()
 # print(UCS(board5, 1).search())
 
-GBFS(board1, 1).search()
-GBFS(board2, 1).search()
+# GBFS(board1, 1).search("h1")
+# GBFS(board2, 1).search("h1")
 # 
 # open = PriorityQueue()
 # open.put((2, board1))
@@ -60,6 +61,7 @@ GBFS(board2, 1).search()
 
 # x = open.get()
 # print(open)
+A(board2, 1).search("h1")
 
 
 
