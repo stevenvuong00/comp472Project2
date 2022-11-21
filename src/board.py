@@ -22,6 +22,7 @@ class Board:
         self.original_input = input
         self.original_fuel = dict(fuel)
         self.initial_config = initial_config
+        self.hn = 0
 
         # IO spaghetti
         if parent is None and Board.io_is_done_flag is False:
@@ -115,7 +116,7 @@ class Board:
 
         new_grid = np.copy(self.grid)
         movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
-        self.children.append((new_grid, movement, self.current_fuel))
+        self.children.append((new_grid, movement, dict(self.current_fuel)))
         # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
@@ -152,7 +153,8 @@ class Board:
                 list.append(self.grid[2][i])
         # convert list to set
         list = set(list)
-        return len(list)
+        self.hn = len(list)
+        return self.hn
 
     # Heuristic 2: number of blocked positions
     def h2(self):
@@ -215,3 +217,6 @@ class Board:
                     print("car cant move right")
                     total += 2
         return total
+
+    def __lt__(self, board):
+        return self.hn < board.hn

@@ -1,15 +1,59 @@
-Initial board configuration: IJBBCCIJDDL.IJAAL.EEK.L...KFF..GGHH. F0 G6
+Initial board configuration: BB.G.HE..G.HEAAG.I..FCCIDDF..I..F... 
 
 
-[['I' 'J' 'B' 'B' 'C' 'C']
- ['I' 'J' 'D' 'D' 'L' '.']
- ['I' 'J' 'A' 'A' 'L' '.']
- ['E' 'E' 'K' '.' 'L' '.']
- ['.' '.' 'K' 'F' 'F' '.']
- ['.' 'G' 'G' 'H' 'H' '.']]
+[['B' 'B' '.' 'G' '.' 'H']
+ ['E' '.' '.' 'G' '.' 'H']
+ ['E' 'A' 'A' 'G' '.' 'I']
+ ['.' '.' 'F' 'C' 'C' 'I']
+ ['D' 'D' 'F' '.' '.' 'I']
+ ['.' '.' 'F' '.' '.' '.']]
 
-Car fuel available: {'I': 100, 'J': 100, 'B': 100, 'C': 100, 'D': 100, 'L': 100, 'A': 100, 'E': 100, 'K': 100, 'F': 0, 'G': 6, 'H': 100}
+Car fuel available: {'B': 100, 'G': 100, 'H': 100, 'E': 100, 'A': 100, 'I': 100, 'F': 100, 'C': 100, 'D': 100}
 
-Searching...
-Unsolvable noob
--------------------------------------------------------
+
+Solution path length:  32  moves
+Solution path: ['B right 1', 'E    up 1', 'A  left 1', 'I  down 1', 'H  down 1', 'F    up 2', 'D right 3', 'F  down 2', 'A right 1', 'E  down 4', 'B  left 1', 'A  left 1', 'F    up 3', 'C  left 3', 'F  down 1', 'G  down 1', 'B right 4', 'F    up 1', 'G    up 1', 'C right 3', 'F  down 3', 'A right 1', 'E    up 4', 'A  left 1', 'F    up 3', 'C  left 3', 'D  left 3', 'F  down 3', 'G  down 3', 'B  left 1', 'H    up 1', 'A right 4']
+
+B right 1	.BBG.HE..G.HEAAG.I..FCCIDDF..I..F... B99 
+E    up 1	EBBG.HE..G.H.AAG.I..FCCIDDF..I..F... B99 E99 
+A  left 1	EBBG.HE..G.HAA.G.I..FCCIDDF..I..F... B99 E99 A99 
+I  down 1	EBBG.HE..G.HAA.G....FCCIDDF..I..F..I B99 E99 A99 I99 
+H  down 1	EBBG..E..G.HAA.G.H..FCCIDDF..I..F..I B99 H99 E99 A99 I99 
+F    up 2	EBBG..E.FG.HAAFG.H..FCCIDD...I.....I B99 H99 E99 A99 I99 F98 
+D right 3	EBBG..E.FG.HAAFG.H..FCCI...DDI.....I B99 H99 E99 A99 I99 F98 D97 
+F  down 2	EBBG..E..G.HAA.G.H..FCCI..FDDI..F..I B99 H99 E99 A99 I99 F96 D97 
+A right 1	EBBG..E..G.H.AAG.H..FCCI..FDDI..F..I B99 H99 E99 A98 I99 F96 D97 
+E  down 4	.BBG.....G.H.AAG.H..FCCIE.FDDIE.F..I E95 B99 H99 A98 F96 I99 D97 
+B  left 1	BB.G.....G.H.AAG.H..FCCIE.FDDIE.F..I B98 H99 A98 F96 I99 E95 D97 
+A  left 1	BB.G.....G.HAA.G.H..FCCIE.FDDIE.F..I B98 H99 A97 F96 I99 E95 D97 
+F    up 3	BBFG....FG.HAAFG.H...CCIE..DDIE....I B98 H99 A97 F93 I99 E95 D97 
+C  left 3	BBFG....FG.HAAFG.HCC...IE..DDIE....I B98 H99 A97 F93 C97 I99 E95 D97 
+F  down 1	BB.G....FG.HAAFG.HCCF..IE..DDIE....I B98 H99 A97 F90 C97 I99 E95 D97 
+G  down 1	BB......FG.HAAFG.HCCFG.IE..DDIE....I B98 G99 H99 A97 F90 C97 I99 E95 D97 
+B right 4	....BB..FG.HAAFG.HCCFG.IE..DDIE....I B94 G99 H99 A97 F90 C97 I99 E95 D97 
+F    up 1	..F.BB..FG.HAAFG.HCC.G.IE..DDIE....I B94 G99 H99 A97 F89 C97 I99 E95 D97 
+G    up 1	..FGBB..FG.HAAFG.HCC...IE..DDIE....I B94 G98 H99 A97 F89 C97 I99 E95 D97 
+C right 3	..FGBB..FG.HAAFG.H...CCIE..DDIE....I B94 G98 H99 A97 F89 C94 I99 E95 D97 
+F  down 3	...GBB...G.HAA.G.H..FCCIE.FDDIE.F..I F86 G98 B94 H99 A97 C94 I99 E95 D97 
+A right 1	...GBB...G.H.AAG.H..FCCIE.FDDIE.F..I F86 G98 B94 H99 A96 C94 I99 E95 D97 
+E    up 4	E..GBBE..G.H.AAG.H..FCCI..FDDI..F..I F86 G98 B94 H99 A96 C94 I99 E91 D97 
+A  left 1	E..GBBE..G.HAA.G.H..FCCI..FDDI..F..I F86 G98 B94 H99 A95 C94 I99 E91 D97 
+F    up 3	E.FGBBE.FG.HAAFG.H...CCI...DDI.....I F83 G98 B94 H99 A95 C94 I99 E91 D97 
+C  left 3	E.FGBBE.FG.HAAFG.HCC...I...DDI.....I F83 G98 B94 H99 A95 C91 I99 E91 D97 
+D  left 3	E.FGBBE.FG.HAAFG.HCC...IDD...I.....I F83 G98 B94 H99 A95 C91 I99 E91 D94 
+F  down 3	E..GBBE..G.HAA.G.HCCF..IDDF..I..F..I F80 G98 B94 H99 A95 C91 I99 E91 D94 
+G  down 3	E...BBE....HAA...HCCFG.IDDFG.I..FG.I F80 G95 B94 H99 A95 C91 I99 E91 D94 
+B  left 1	E..BB.E....HAA...HCCFG.IDDFG.I..FG.I F80 G95 B91 H99 A95 C91 I99 E91 D94 
+H    up 1	E..BBHE....HAA....CCFG.IDDFG.I..FG.I F80 G95 B91 H98 A95 C91 I99 E91 D94 
+A right 4	E..BBHE....H....AACCFG.IDDFG.I..FG.I F80 G95 B91 H98 A91 C91 I99 E91 D94 
+
+Runtime: 5.080865859985352
+Search path length: 825
+[total cost: 32]
+
+[['E' '.' '.' 'B' 'B' 'H']
+ ['E' '.' '.' '.' '.' 'H']
+ ['A' 'A' '.' '.' '.' '.']
+ ['C' 'C' 'F' 'G' '.' 'I']
+ ['D' 'D' 'F' 'G' '.' 'I']
+ ['.' '.' 'F' 'G' '.' 'I']]

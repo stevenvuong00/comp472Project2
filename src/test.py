@@ -2,6 +2,9 @@ import numpy as np
 from board import Board
 from ucs import UCS
 from vehicle import Vehicle
+from gbfs import GBFS
+from queue import PriorityQueue
+
 
 # input1 = 'BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.' # modified to test
 # input1 = 'BB.G.H...G.HAAMMKK..FCCIDDF..I..F...'
@@ -16,7 +19,7 @@ input5 = 'BBBBBBKKKKKKAAECZD..ECZD......FFFFFF'
 input6 = 'BBBBBBKKKKKK.AA.....ECZD..ECZDFFFFFF'
 input7 = '.............AA.....................'
 
-fuel = {'A': 99, 'M': 99}
+# fuel = {'A': 99, 'M': 99}
 # board1 = Board(input1, fuel)
 # print(board1.current_fuel)
 # board1.print_board()
@@ -36,7 +39,6 @@ board7 = Board(input7)
 
 # UCS(board1).search()
 # UCS(board3).search()
-print(UCS(board5).search())
 # UCS(board2).search()
 # UCS(board6).search()
 # UCS(board7).search()
@@ -45,6 +47,21 @@ print(UCS(board5).search())
 
 # car1 = Vehicle('A', board1, 99)
 # car1.print_vehicle()
+
+# UCS(board1, 1).search()
+# print(UCS(board5, 1).search())
+
+GBFS(board1, 1).search()
+GBFS(board2, 1).search()
+# 
+# open = PriorityQueue()
+# open.put((2, board1))
+# open.put((3, board2))
+
+# x = open.get()
+# print(open)
+
+
 
 
 
