@@ -18,7 +18,7 @@ input4 = '....F...B.F.AABCF....C.....C....EE..'
 
 input5 = 'BBBBBBKKKKKKAAECZD..ECZD......FFFFFF'
 input6 = 'BBBBBBKKKKKK.AA.....ECZD..ECZDFFFFFF'
-input7 = '.............AA.....................'
+input7 = 'JBBCCCJDD..MJAAL.MFFKL.N..KGGN.HH...'
 
 # fuel = {'A': 99, 'M': 99}
 # board1 = Board(input1, fuel)
@@ -61,7 +61,7 @@ board7 = Board(input7)
 
 # x = open.get()
 # print(open)
-A(board2, 1).search("h1")
+GBFS(board7, 1).search("h1")
 
 
 

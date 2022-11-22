@@ -51,9 +51,16 @@ class A:
                 # Checking if the generated child is in the visited list - if yes, we skip it
                 if not self.array_to_string(child[0]) in self.visited_boards:
                     in_open = False
-                    for open_board in self.open_boards:
-                        if(np.array_equal(open_board, child[0])):
+                    for index, open_node in enumerate(self.open.queue):
+                        if np.array_equal(open_node[1].grid, child[0]):
                             in_open = True
+                            child_board = Board(child[0], child[2], child[0])
+                            child_hn = child_board.apply_heuristic(heuristic)
+                            child_gn = parent_gn + 1
+                            child_fn = child_hn + child_gn
+                            if open_node[0] > child_fn:
+                                self.open.get(index)
+                                self.open.put((child_fn, child_board, current_board, child_gn, child_hn, child[1], child[2]))
                             break
                     if in_open is False:
                         child_board = Board(child[0], child[2], child[0])
@@ -61,34 +68,6 @@ class A:
                         gn = parent_gn + 1
                         fn = hn + gn
                         self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
-                        self.open_boards.append(child[0])
-                    else:
-                        # Finding the repeated board in open list queue
-                        open_copy = []
-                        board = self.open.get()
-                        open_copy.append(board)
-                        print("looking for duplicate board in open")
-                        print("CHILD BOARD")
-                        print(child[0])
-                        while not np.array_equal(board[1].grid, child[0]):
-                            board = self.open.get()
-                            open_copy.append(board)
-                            print("BOARD FROM OPEN LIST")
-                            print(board[1].grid)
-                        print("found duplicate")
-                        print(open_copy[-1][1].grid)
-
-                        # Comparing the repeated board's hn with the current child and replacing it if child's hn is lower
-                        child_board = Board(child[0], child[2], child[0])
-                        child_hn = child_board.apply_heuristic(heuristic)
-                        child_gn = parent_gn + 1
-                        child_fn = child_hn + child_gn
-                        if open_copy[-1][0] > child_fn:
-                            open_copy[-1] = (child_fn, child_board, current_node[1], child_gn, child_hn, child[1], child[2])
-
-                        # Readding all nodes to the open list
-                        for open_node in open_copy:
-                            self.open.put(open_node)
                     
         if goal is not None:
             end = time.time()

@@ -9,7 +9,6 @@ class GBFS:
         self.open = PriorityQueue()
         self.closed = []
         self.visited_boards = set()
-        self.open_boards = []
         self.lowest_cost = 0
         self.solution_path = []
         self.solution_cost = 0
@@ -28,7 +27,6 @@ class GBFS:
         gn = 0
         fn = hn + gn
         self.open.put((fn, self.board, None, gn, hn, "", self.board.current_fuel))
-        self.open_boards.append(self.board.grid)
         
         search_path_length = 0  # search path length
         goal = None
@@ -44,6 +42,7 @@ class GBFS:
 
             current_board.get_children()
             children = current_board.children
+            parent_gn = gn
             # Visited nodes: Moving the current node to CLOSED
             self.closed.append(current_node)
             self.visited_boards.add(self.array_to_string(current_board.grid))
@@ -61,17 +60,33 @@ class GBFS:
                 # check if the generated child is in closed list 
                 if not self.array_to_string(child[0]) in self.visited_boards:
                     in_open = False
-                    for open_board in self.open_boards:
-                        if(np.array_equal(open_board, child[0])):
+                    for index, open_node in enumerate(self.open.queue):
+                        if(np.array_equal(open_node[1].grid, child[0])):
                             in_open = True
+                            child_board = Board(child[0], child[2], child[0])
+                            hn = child_board.apply_heuristic(heuristic)
+                            gn = 0
+                            fn = hn + gn
+                            child_hn = child_board.apply_heuristic(heuristic)
+                            child_gn = parent_gn + 1
+                            child_fn = child_hn + child_gn
+                            child_board.fn = child_fn
+                            child_board.gn = child_gn
+                            if open_node[0] > child_fn:
+                                self.open.get(index)
+                                self.open.put((child_fn, child_board, current_board, child_gn, child_hn, child[1], child[2]))
                             break
                     if in_open is False:
                         child_board = Board(child[0], child[2], child[0])
                         hn = child_board.apply_heuristic(heuristic)
                         gn = 0
                         fn = hn + gn
-                        self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
-                        self.open_boards.append(child_board.grid)
+                        child_hn = child_board.apply_heuristic(heuristic)
+                        child_gn = parent_gn + 1
+                        child_fn = child_hn + child_gn
+                        child_board.fn = child_fn
+                        child_board.gn = child_gn
+                        self.open.put((child_fn, child_board, current_node[1], child_gn, child_hn, child[1], child[2]))
 
 
         if goal is not None:

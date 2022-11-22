@@ -110,14 +110,9 @@ class Board:
         self.vehicles[vehicle_key].move(self, move)
         self.update_grid(self.vehicles[vehicle_key])
         self.leave_parking()
-
-        # print('moved ' + vehicle_key + ' ' + move)
-        # self.print_board()
-
         new_grid = np.copy(self.grid)
         movement = vehicle_key + ' ' + move.rjust(5) + ' ' + str(distance)
         self.children.append((new_grid, movement, dict(self.current_fuel)))
-        # return vehicle_key + ' ' + move + ' ' + str(distance)
 
     def reset(self):
         self.grid = np.array(list(self.original_input)).reshape((6, 6))

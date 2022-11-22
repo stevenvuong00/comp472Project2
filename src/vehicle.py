@@ -72,6 +72,7 @@ class Vehicle:
         elif direction == 'down':
             for pos in self.position:
                 pos[0] = pos[0] + 1
+
         # fuel and grid update
         self.fuel -= 1
         current_board.change_fuel()
