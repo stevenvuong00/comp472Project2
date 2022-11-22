@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 import numpy as np
 from board import Board
@@ -66,13 +67,44 @@ def do_a(line, count):
     return data
 
 
+def randomize_fuels():
+    f = open("../input_files/50_board_inputs.txt", "r")
+    f_out = open("../input_files/50_board_inputs_with_fuels.txt", "w")
+    for line in f:
+        if line[0] == "#" or line[0] == "\n":
+            f_out.write(line)
+            continue
+        add_fuel = randint(0, 100)
+        if add_fuel < 51:
+            f_out.write(line)
+            continue
+        line = line.strip()
+        board = np.empty(shape=1*36, dtype=str)
+        for char in range(0, len(line)):
+            v = line[char]
+            board = np.append(board, v)
+        vehicles = np.unique(board)
+        vehicles = vehicles[1:]
+        fuels = []
+        for elem in vehicles[1:]:
+            fuels.append(elem + str(randint(0, 10)))
+        fuel_line = ""
+        for fuel in fuels:
+            fuel_line = fuel_line + fuel + " "
+        f_out.write(line + " " + fuel_line)
+
+    f.close()
+
+
 def run():
     original_stdout = sys.stdout
     count = 0
-    f = open('../Sample/sample-input.txt')
+    # f = open('../Sample/sample-input.txt')
     # f = open('Sample/sample-input.txt')
     # f = open('../Sample/test-input.txt')
     # f = open("../input_files/50_board_inputs.txt")
+    f = open("../input_files/50_board_inputs_with_fuels.txt")
+
     with open("../analysis/summary.csv", "w+", encoding="UTF8", newline="") as f_summary:
         csv_writer = csv.writer(f_summary)
         headers = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution',
@@ -95,4 +127,5 @@ def run():
     sys.stdout = original_stdout
 
 
+randomize_fuels()
 run()
