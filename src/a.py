@@ -4,7 +4,7 @@ from queue import PriorityQueue
 import numpy as np
 
 class A:
-    def __init__(self, board, puzzle_count):
+    def __init__(self, board, puzzle_count, heuristic):
         self.board = board
         self.open = PriorityQueue()
         self.open_boards = []
@@ -13,8 +13,14 @@ class A:
         self.lowest_cost = 0
         self.solution_path = []
         self.solution_cost = 0
+        self.heuristic = heuristic
+        # self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
+        self.output_search_file = "../output_files/a-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
+        self.summary_data = [str(puzzle_count), "A/A*", self.heuristic]  # See below
+        # ['#', Algorithm', 'Heuristic', 'Length of the Solution','Length of the Search Path', 'Execution Time']
 
-    def search(self, heuristic):
+    def search(self):
+        heuristic = self.heuristic
         start = time.time()
         self.board.print_board()
         hn = self.board.apply_heuristic(heuristic)
@@ -24,6 +30,9 @@ class A:
 
         goal = None
         search_path_length = 0
+
+        f_search = open(self.output_search_file, "w")
+
         while not self.open.empty():
             search_path_length += 1
 
@@ -34,6 +43,11 @@ class A:
             # Marking current node as visited & adding to closed list
             self.closed.append(current_node)
             self.visited_boards.add(self.array_to_string(current_board.grid))
+
+            f_search.write("{} {} {}\t{} {}".format(fn, gn, hn,
+                                                    self.array_to_string(current_board.grid),
+                                                    self.process_fuel(current_fuel)))
+            f_search.write("\n")
 
             # Generating children
             current_board.get_children()
@@ -68,18 +82,24 @@ class A:
                         gn = parent_gn + 1
                         fn = hn + gn
                         self.open.put((fn, child_board, current_node[1], gn, hn, child[1], child[2]))
-                    
+
+        end = time.time()
+        runtime = str(end - start)
+
         if goal is not None:
-            end = time.time()
             print()
-            print('Runtime: ' + str(end - start))
+            print('Runtime: ' + runtime)
             print('Search path length: {}'.format(search_path_length))
             print()
             goal[1].print_board()
-            return
+            f_search.close()
         else:
             print("No solution")
+            self.summary_data.append("No solution")
         print("-------------------------------------------------------")
+        self.summary_data.append(str(search_path_length))
+        self.summary_data.append(runtime)
+        return self.summary_data
     
     def get_solution_path(self):
 
@@ -109,6 +129,7 @@ class A:
             solution.append("{}\t{} {}".format(node[1], self.array_to_string(node[0].grid), self.process_fuel(node[2])))
 
         print("\nSolution path length: ", len(self.solution_path), " moves")
+        self.summary_data.append(str(len(self.solution_path)))
         print("Solution path: " + str(summary) + "\n")
         list(map(print, solution))
 
