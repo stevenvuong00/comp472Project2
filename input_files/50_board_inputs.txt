@@ -1,0 +1,161 @@
+# Board 1
+U.B..DU.BCCDAABT.DFW.TKKFWLLL..WOOO.
+
+# Board 2
+VVBC....BCDEAABCDEHJ..F.HJNNFI.KK.FI
+
+# Board 3
+YI.C..YI.C.L.AACDLE.G.D.E.GDDD.OOPPP
+
+# Board 4
+.OOTT.YIIIP.YAA.P.MCCHH.MUUU.L.KKEEL
+
+# Board 5
+..DII...DCLLAABC.OJ.B.POJFFFPOJ.....
+
+# Board 6
+.C....BC.PTUBAAPTUYYYOTU..DOLL..DUU.
+
+# Board 7
+FFFEEDU..RODUAAROJ..BBBJ...III......
+
+# Board 8
+.B....SB.CDESAACDEHHHGDE..VG....VWW.
+
+# Board 9
+CHH..YC....YCFAADE.F..DE..RITTBBRIPP
+
+# Board 10
+JJJ.PS....PSHAADPUH.NDLUBINDLOBINGGO
+
+# Board 11
+...BYYGGGBS..AACS.F..C..F..CPPF.DDOO
+
+# Board 12
+.CCBBBHH.FL..AAFLY...FLYG.DUU.G.DEE.
+
+# Board 13
+.T.YYY.T.HHHAAFFFDGGGG.DR.BBBDREEVVV
+
+# Board 14
+FFFTTT....YOAAGHYO..GH........DDDJJJ
+
+# Board 15
+...O..LLKOYPAAKOYPDDD.BB.RRR.V..JJJV
+
+# Board 16
+...B.....BCCAA.D..E.FDGGE.F...E.F...
+
+# Board 17
+..GGOR..DFORAADFO.T.DF..TVKKJJ.VIII.
+
+# Board 18
+..B.....B...AAB...CCC..D.....D.....D
+
+# Board 19
+..BC....BCDDAABC....EEEF.....F..GGGF
+
+# Board 20
+..B.....B...AAB.......C..DEEC..D..C.
+
+# Board 21
+............AA.B..CC.BD..E..D..EFFD.
+
+# Board 22
+YBCCDDYBR..EY.RAAEH.Z..SH.Z..SH.Z..S
+
+# Board 23
+Z...C.Z...C.Z.AAC.Y..B..Y..BDDY.....
+
+# Board 24
+F....BF....BAACCCBH.GGZ.H..EZ.H..EDD
+
+# Board 25
+..GGGD..E..DAAE..DH.....H.BBCCZZ..FF
+
+# Board 26
+..D.....D...AADG.....GB.ECCGB.E.FFB.
+
+# Board 27
+U.B..DU.BCCDAABT.DFW.TKKFWLLL..WOOO.
+
+# Board 28
+VVBC....BCDEAABCDEHJ..F.HJNNFI.KK.FI
+
+# Board 29
+YI.C..YI.C.L.AACDLE.G.D.E.GDDD.OOPPP
+
+# Board 30
+.OOTT.YIIIP.YAA.P.MCCHH.MUUU.L.KKEEL
+
+# Board 31
+..DII...DCLLAABC.OJ.B.POJFFFPOJ.....
+
+# Board 32
+.C....BC.PTUBAAPTUYYYOTU..DOLL..DUU.
+
+# Board 33
+FFFEEDU..RODUAAROJ..BBBJ...III......
+
+# Board 34
+.B....SB.CDESAACDEHHHGDE..VG....VWW.
+
+# Board 35
+CHH..YC....YCFAADE.F..DE..RITTBBRIPP
+
+# Board 36
+JJJ.PS....PSHAADPUH.NDLUBINDLOBINGGO
+
+# Board 37
+...BYYGGGBS..AACS.F..C..F..CPPF.DDOO
+
+# Board 38
+.CCBBBHH.FL..AAFLY...FLYG.DUU.G.DEE.
+
+# Board 39
+.T.YYY.T.HHHAAFFFDGGGG.DR.BBBDREEVVV
+
+# Board 40
+FFFTTT....YOAAGHYO..GH........DDDJJJ
+
+# Board 41
+...O..LLKOYPAAKOYPDDD.BB.RRR.V..JJJV
+
+# Board 42
+...B.....BCCAA.D..E.FDGGE.F...E.F...
+
+# Board 43
+..GGOR..DFORAADFO.T.DF..TVKKJJ.VIII.
+
+# Board 44
+..B.....B...AAB...CCC..D.....D.....D
+
+# Board 45
+..BC....BCDDAABC....EEEF.....F..GGGF
+
+# Board 46
+..B.....B...AAB.......C..DEEC..D..C.
+
+# Board 47
+............AA.B..CC.BD..E..D..EFFD.
+
+# Board 48
+YBCCDDYBR..EY.RAAEH.Z..SH.Z..SH.Z..S
+
+# Board 49
+Z...C.Z...C.Z.AAC.Y..B..Y..BDDY.....
+
+# Board -50
+F....BF....BAACCCBH.GGZ.H..EZ.H..EDD
+
+
+
+
+
+
+
+
+
+
+
+

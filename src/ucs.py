@@ -13,12 +13,10 @@ class UCS:
         self.lowest_cost = 0
         self.solution_path = []
         self.solution_cost = 0
-
-        # self.output_search_file = "../output_files/ucs-search-" + str(puzzle_count) + ".txt"
-        # self.output_solution_file = "../output_files/ucs-solution-" + str(puzzle_count) + ".txt"
-
-        self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
-        self.output_solution_file = "output_files/ucs-solution-" + str(puzzle_count) + ".txt"
+        self.output_search_file = "../output_files/ucs-search-" + str(puzzle_count) + ".txt"
+        # self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
+        self.summary_data = [str(puzzle_count), "UCS", "N/A"]  # See below
+        # ['#', Algorithm', 'Heuristic', 'Length of the Solution','Length of the Search Path', 'Execution Time']
 
     def search(self):
         start = time.time()
@@ -29,7 +27,6 @@ class UCS:
         goal = None
 
         f_search = open(self.output_search_file, "w")
-        f_solution = open(self.output_solution_file, "w")
 
         while len(self.open) > 0:
             x += 1
@@ -72,19 +69,25 @@ class UCS:
                                               child[1], child[2]))
                             # current_board.applied_moves = None
 
+        end = time.time()
+        runtime = str(end - start)
+
         if goal is not None:
-            end = time.time()
             print()
-            print('Runtime: ' + str(end - start))
+            print('Runtime: ' + runtime)
             print('Search path length: {}'.format(x))
             print("[total cost: {}]".format(goal[2]))
             print()
             goal[1].print_board()
             f_search.close()
-            return
+
         else:
             print("No solution")
+            self.summary_data.append("No solution")
         print("-------------------------------------------------------")
+        self.summary_data.append(str(x))
+        self.summary_data.append(runtime)
+        return self.summary_data
 
     def get_solution_path(self):
         # Start with the solution and backtrack to the start state
@@ -108,6 +111,7 @@ class UCS:
             solution.append("{}\t{} {}".format(node[1], self.array_to_string(node[0]), self.process_fuel(node[2])))
 
         print("\nSolution path length: ", len(self.solution_path), " moves")
+        self.summary_data.append(str(len(self.solution_path)))
         print("Solution path: " + str(summary) + "\n")
         list(map(print, solution))
 

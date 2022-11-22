@@ -28,7 +28,8 @@ class Board:
         if parent is None and Board.io_is_done_flag is False:
             print('Initial board configuration: ' + str(self.initial_config))
             print()
-            # self.print_board()
+            # don't comment this out, we need it for I/O
+            self.print_board()
             print()
             print("Car fuel available: " + str(dict(self.current_fuel)))
             print()
