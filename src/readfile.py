@@ -26,8 +26,8 @@ def do_ucs(line, count):
     input_received = line.strip().split(" ")
     board_input = input_received[0]
     fuel_dict = parse_fuel(input_received[1:])
-    output_solution_file = "../output_files/ucs-solution-" + str(count) + ".txt"
-    # output_solution_file = "output_files/ucs-solution-" + str(count) + ".txt"
+    # output_solution_file = "../output_files/ucs-solution-" + str(count) + ".txt"
+    output_solution_file = "output_files/ucs-solution-" + str(count) + ".txt"
     f_sol = open(output_solution_file, "w")
     sys.stdout = f_sol
     data = UCS(Board(board_input, fuel_dict, None, line), count).search()
@@ -42,8 +42,8 @@ def do_gbfs(line, count):
     heuristic_list = ["h1", "h2", "h3", "h4"]
     data = []
     for heuristic in heuristic_list:
-        # output_solution_file = "output_files/gbfs-" + heuristic + "-solution-" + str(count) + ".txt"
-        output_solution_file = "../output_files/gbfs-" + heuristic + "-solution-" + str(count) + ".txt"
+        output_solution_file = "output_files/gbfs-" + heuristic + "-solution-" + str(count) + ".txt"
+        # output_solution_file = "../output_files/gbfs-" + heuristic + "-solution-" + str(count) + ".txt"
         f_sol = open(output_solution_file, "w")
         sys.stdout = f_sol
         data.append(GBFS(Board(board_input, fuel_dict, None, line), count, heuristic).search())
@@ -59,7 +59,7 @@ def do_a(line, count):
     data = []
     for heuristic in heuristic_list:
         # output_solution_file = "output_files/gbfs-" + heuristic + "-solution-" + str(count) + ".txt"
-        output_solution_file = "../output_files/a-" + heuristic + "-solution-" + str(count) + ".txt"
+        output_solution_file = "output_files/a-" + heuristic + "-solution-" + str(count) + ".txt"
         f_sol = open(output_solution_file, "w")
         sys.stdout = f_sol
         data.append(A(Board(board_input, fuel_dict, None, line), count, heuristic).search())
@@ -68,8 +68,10 @@ def do_a(line, count):
 
 
 def randomize_fuels():
-    f = open("../input_files/50_board_inputs.txt", "r")
-    f_out = open("../input_files/50_board_inputs_with_fuels.txt", "w")
+    # f = open("../input_files/50_board_inputs.txt", "r")
+    f = open("input_files/50_board_inputs.txt", "r")
+    # f_out = open("../input_files/50_board_inputs_with_fuels.txt", "w")
+    f_out = open("input_files/50_board_inputs_with_fuels.txt", "w")
     for line in f:
         if line[0] == "#" or line[0] == "\n":
             f_out.write(line)
@@ -100,12 +102,13 @@ def run():
     original_stdout = sys.stdout
     count = 0
     # f = open('../Sample/sample-input.txt')
-    # f = open('Sample/sample-input.txt')
+    # f = open('input_files/sample-input.txt')
     # f = open('../Sample/test-input.txt')
-    # f = open("../input_files/50_board_inputs.txt")
-    f = open("../input_files/50_board_inputs_with_fuels.txt")
+    f = open("input_files/50_board_inputs.txt")
+    # f = open("../input_files/50_board_inputs_with_fuels.txt")
+    # f = open("input_files/input.txt")                                                       
 
-    with open("../analysis/summary.csv", "w+", encoding="UTF8", newline="") as f_summary:
+    with open("analysis/summary.csv", "w+", encoding="UTF8", newline="") as f_summary:
         csv_writer = csv.writer(f_summary)
         headers = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution',
                    'Length of the Search Path', 'Execution Time (in seconds)']
@@ -127,5 +130,5 @@ def run():
     sys.stdout = original_stdout
 
 
-randomize_fuels()
+# randomize_fuels()
 run()

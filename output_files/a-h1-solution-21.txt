@@ -1,0 +1,37 @@
+Initial board configuration: ...HHH.....FAA.B.FCC.BD..E..DG.ESSDG
+
+
+[['.' '.' '.' 'H' 'H' 'H']
+ ['.' '.' '.' '.' '.' 'F']
+ ['A' 'A' '.' 'B' '.' 'F']
+ ['C' 'C' '.' 'B' 'D' '.']
+ ['.' 'E' '.' '.' 'D' 'G']
+ ['.' 'E' 'S' 'S' 'D' 'G']]
+
+Car fuel available: {'H': 100, 'F': 100, 'A': 100, 'B': 100, 'C': 100, 'D': 100, 'E': 100, 'G': 100, 'S': 100}
+
+[['.' '.' '.' 'H' 'H' 'H']
+ ['.' '.' '.' '.' '.' 'F']
+ ['A' 'A' '.' 'B' '.' 'F']
+ ['C' 'C' '.' 'B' 'D' '.']
+ ['.' 'E' '.' '.' 'D' 'G']
+ ['.' 'E' 'S' 'S' 'D' 'G']]
+
+Solution path length:  4  moves
+Solution path: ['H  left 3', 'B    up 2', 'F    up 1', 'A right 4']
+
+H  left 3	HHH........FAA.B.FCC.BD..E..DG.ESSDG H97 
+B    up 2	HHHB.....B.FAA...FCC..D..E..DG.ESSDG H97 B98 
+F    up 1	HHHB.F...B.FAA....CC..D..E..DG.ESSDG H97 F99 B98 
+A right 4	HHHB.F...B.F....AACC..D..E..DG.ESSDG H97 F99 A96 B98 
+
+Runtime: 0.22219061851501465
+Search path length: 19
+
+[['H' 'H' 'H' 'B' '.' 'F']
+ ['.' '.' '.' 'B' '.' 'F']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['C' 'C' '.' '.' 'D' '.']
+ ['.' 'E' '.' '.' 'D' 'G']
+ ['.' 'E' 'S' 'S' 'D' 'G']]
+-------------------------------------------------------

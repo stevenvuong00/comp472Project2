@@ -1,0 +1,8 @@
+3 0 3	............AA.B..CC.BD..E..D..EFFD. 
+1 1 0	............AA....CC.BD..E.BD..EFFD. B99 
+1 1 0	...B.....B..AA....CC..D..E..D..EFFD. B98 
+2 2 0	............AA.....CCBD..E.BD..EFFD. B99 C99 
+2 2 0	...B.....B...AA...CC..D..E..D..EFFD. A99 B98 
+2 2 0	.............AA...CC.BD..E.BD..EFFD. A99 B99 
+2 2 0	...............AA.CC.BD..E.BD..EFFD. A97 B99 
+2 2 0	................AACC.BD..E.BD..EFFD. A96 B99 

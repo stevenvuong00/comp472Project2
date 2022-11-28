@@ -1,0 +1,48 @@
+Initial board configuration: .C....BC.PTUBAAPTUYYYOTU..DOLL..D...
+
+
+[['.' 'C' '.' '.' '.' '.']
+ ['B' 'C' '.' 'P' 'T' 'U']
+ ['B' 'A' 'A' 'P' 'T' 'U']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' '.' 'D' 'O' 'L' 'L']
+ ['.' '.' 'D' '.' '.' '.']]
+
+Car fuel available: {'C': 100, 'B': 100, 'P': 100, 'T': 100, 'U': 100, 'A': 100, 'Y': 100, 'O': 100, 'D': 100, 'L': 100}
+
+[['.' 'C' '.' '.' '.' '.']
+ ['B' 'C' '.' 'P' 'T' 'U']
+ ['B' 'A' 'A' 'P' 'T' 'U']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' '.' 'D' 'O' 'L' 'L']
+ ['.' '.' 'D' '.' '.' '.']]
+
+Solution path length:  15  moves
+Solution path: ['P    up 1', 'B    up 1', 'A  left 1', 'T    up 1', 'O  down 1', 'U    up 1', 'Y right 3', 'D    up 4', 'Y  left 3', 'O    up 2', 'L  left 3', 'O  down 1', 'T  down 3', 'U  down 3', 'A right 4']
+
+P    up 1	.C.P..BC.PTUBAA.TUYYYOTU..DOLL..D... P99 
+B    up 1	BC.P..BC.PTU.AA.TUYYYOTU..DOLL..D... B99 P99 
+A  left 1	BC.P..BC.PTUAA..TUYYYOTU..DOLL..D... B99 P99 A99 
+T    up 1	BC.PT.BC.PTUAA..TUYYYO.U..DOLL..D... B99 P99 T99 A99 
+O  down 1	BC.PT.BC.PTUAA..TUYYY..U..DOLL..DO.. B99 P99 T99 A99 O99 
+U    up 1	BC.PTUBC.PTUAA..TUYYY.....DOLL..DO.. B99 P99 T99 U99 A99 O99 
+Y right 3	BC.PTUBC.PTUAA..TU...YYY..DOLL..DO.. B99 P99 T99 U99 A99 Y97 O99 
+D    up 4	BCDPTUBCDPTUAA..TU...YYY...OLL...O.. B99 P99 T99 U99 A99 Y97 O99 D96 
+Y  left 3	BCDPTUBCDPTUAA..TUYYY......OLL...O.. B99 P99 T99 U99 A99 Y94 O99 D96 
+O    up 2	BCDPTUBCDPTUAA.OTUYYYO......LL...... B99 P99 T99 U99 A99 Y94 O97 D96 
+L  left 3	BCDPTUBCDPTUAA.OTUYYYO...LL......... B99 P99 T99 U99 A99 Y94 O97 D96 L97 
+O  down 1	BCDPTUBCDPTUAA..TUYYYO...LLO........ B99 P99 T99 U99 A99 Y94 O96 D96 L97 
+T  down 3	BCDP.UBCDP.UAA...UYYYOT..LLOT.....T. B99 P99 T96 U99 A99 Y94 O96 D96 L97 
+U  down 3	BCDP..BCDP..AA....YYYOTU.LLOTU....TU B99 P99 T96 U96 A99 Y94 O96 D96 L97 
+A right 4	BCDP..BCDP......AAYYYOTU.LLOTU....TU B99 P99 T96 U96 A95 Y94 O96 D96 L97 
+
+Runtime: 15.627408504486084
+Search path length: 1379
+
+[['B' 'C' 'D' 'P' '.' '.']
+ ['B' 'C' 'D' 'P' '.' '.']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' 'L' 'L' 'O' 'T' 'U']
+ ['.' '.' '.' '.' 'T' 'U']]
+-------------------------------------------------------

@@ -14,8 +14,8 @@ class A:
         self.solution_path = []
         self.solution_cost = 0
         self.heuristic = heuristic
-        # self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
-        self.output_search_file = "../output_files/a-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
+        # self.output_search_file = "../output_files/a-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
+        self.output_search_file = "output_files/a-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
         self.summary_data = [str(puzzle_count), "A/A*", self.heuristic]  # See below
         # ['#', Algorithm', 'Heuristic', 'Length of the Solution','Length of the Search Path', 'Execution Time']
 

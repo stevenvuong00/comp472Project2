@@ -1,0 +1,8 @@
+2 0 2	F....BF....BAACCCBH.GGZ.H..EZ.H..E.. 
+2 1 1	F.....F.....AACCC.H.GGZBH..EZBH..E.B B97 
+2 2 0	F.....F.....AA....H.GGZBH..EZBH..E.B B97 C99 
+3 3 0	F.....F......AA...H.GGZBH..EZBH..E.B B97 A99 C99 
+3 3 0	F.....F.....AA....H.GG.BH..EZBH..EZB B97 C99 Z99 
+3 3 0	F...Z.F...Z.AA....H.GG.BH..E.BH..E.B B97 C99 Z97 
+3 3 0	F.....F.......AA..H.GGZBH..EZBH..E.B B97 A98 C99 
+3 3 0	F.....F.........AAH.GGZBH..EZBH..E.B B97 A96 C99 

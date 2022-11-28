@@ -1,0 +1,16 @@
+0 0 0	...B.....BCCAA.D..E.FDGGE.F...E.F... 
+1 1 0	...B.....BCC.AAD..E.FDGGE.F...E.F... A99 
+1 1 0	...B.....BCCAA....E.FDGGE.FD..E.F... D99 
+1 1 0	...B.....BCCAA....E.F.GGE.FD..E.FD.. D98 
+1 1 0	...B.....BCCAAFD..E.FDGGE.F...E..... F99 
+1 1 0	...B....FBCCAAFD..E.FDGGE.....E..... F98 
+1 1 0	..FB....FBCCAAFD..E..DGGE.....E..... F97 
+2 2 0	...B.....BCC.AA...E.FDGGE.FD..E.F... A99 D99 
+2 2 0	...B.....BCC.AA...E.F.GGE.FD..E.FD.. A99 D98 
+2 2 0	...B.....BCCEAAD..E.FDGGE.F.....F... A99 E99 
+2 2 0	...B..E..BCCEAAD..E.FDGG..F.....F... A99 E98 
+2 2 0	E..B..E..BCCEAAD....FDGG..F.....F... A99 E97 
+2 2 0	.........BCCAA.B..E.FDGGE.FD..E.F... B99 D99 
+2 2 0	...B.....BCC..AA..E.FDGGE.FD..E.F... A98 D99 
+2 2 0	...B.....BCC...AA.E.FDGGE.FD..E.F... A97 D99 
+2 2 0	...B.....BCC....AAE.FDGGE.FD..E.F... A96 D99 

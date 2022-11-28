@@ -1,0 +1,34 @@
+Initial board configuration: ...O..LLKOYPAAKOYPDDD.BB.RRR.V..JJJV
+
+
+[['.' '.' '.' 'O' '.' '.']
+ ['L' 'L' 'K' 'O' 'Y' 'P']
+ ['A' 'A' 'K' 'O' 'Y' 'P']
+ ['D' 'D' 'D' '.' 'B' 'B']
+ ['.' 'R' 'R' 'R' '.' 'V']
+ ['.' '.' 'J' 'J' 'J' 'V']]
+
+Car fuel available: {'O': 100, 'L': 100, 'K': 100, 'Y': 100, 'P': 100, 'A': 100, 'D': 100, 'B': 100, 'R': 100, 'V': 100, 'J': 100}
+
+
+Solution path length:  7  moves
+Solution path: ['J  left 2', 'R  left 1', 'O  down 3', 'K    up 1', 'Y    up 1', 'P    up 1', 'A right 4']
+
+J  left 2	...O..LLKOYPAAKOYPDDD.BB.RRR.VJJJ..V J98 
+R  left 1	...O..LLKOYPAAKOYPDDD.BBRRR..VJJJ..V R99 J98 
+O  down 3	......LLK.YPAAK.YPDDDOBBRRRO.VJJJO.V O97 R99 J98 
+K    up 1	..K...LLK.YPAA..YPDDDOBBRRRO.VJJJO.V O97 K99 R99 J98 
+Y    up 1	..K.Y.LLK.YPAA...PDDDOBBRRRO.VJJJO.V O97 K99 Y99 R99 J98 
+P    up 1	..K.YPLLK.YPAA....DDDOBBRRRO.VJJJO.V O97 K99 Y99 P99 R99 J98 
+A right 4	..K.YPLLK.YP....AADDDOBBRRRO.VJJJO.V O97 K99 Y99 P99 A96 R99 J98 
+
+Runtime: 3.1096677780151367
+Search path length: 259
+
+[['.' '.' 'K' '.' 'Y' 'P']
+ ['L' 'L' 'K' '.' 'Y' 'P']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['D' 'D' 'D' 'O' 'B' 'B']
+ ['R' 'R' 'R' 'O' '.' 'V']
+ ['J' 'J' 'J' 'O' '.' 'V']]
+-------------------------------------------------------

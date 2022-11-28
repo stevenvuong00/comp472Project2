@@ -1,0 +1,52 @@
+Initial board configuration: ..DII...DCLLAABC.OJ.B.POJFFFPOJ.....
+
+
+[['.' '.' 'D' 'I' 'I' '.']
+ ['.' '.' 'D' 'C' 'L' 'L']
+ ['A' 'A' 'B' 'C' '.' 'O']
+ ['J' '.' 'B' '.' 'P' 'O']
+ ['J' 'F' 'F' 'F' 'P' 'O']
+ ['J' '.' '.' '.' '.' '.']]
+
+Car fuel available: {'D': 100, 'I': 100, 'C': 100, 'L': 100, 'A': 100, 'B': 100, 'O': 100, 'J': 100, 'P': 100, 'F': 100}
+
+[['.' '.' 'D' 'I' 'I' '.']
+ ['.' '.' 'D' 'C' 'L' 'L']
+ ['A' 'A' 'B' 'C' '.' 'O']
+ ['J' '.' 'B' '.' 'P' 'O']
+ ['J' 'F' 'F' 'F' 'P' 'O']
+ ['J' '.' '.' '.' '.' '.']]
+
+Solution path length:  19  moves
+Solution path: ['C  down 1', 'L  left 1', 'O  down 1', 'P    up 1', 'O    up 2', 'F right 2', 'B  down 2', 'D  down 2', 'L  left 3', 'I  left 3', 'D    up 2', 'C    up 2', 'P    up 2', 'O    up 1', 'A right 3', 'B    up 2', 'F  left 1', 'O  down 3', 'A right 1']
+
+C  down 1	..DII...D.LLAABC.OJ.BCPOJFFFPOJ..... C99 
+L  left 1	..DII...DLL.AABC.OJ.BCPOJFFFPOJ..... C99 L99 
+O  down 1	..DII...DLL.AABC..J.BCPOJFFFPOJ....O C99 L99 O99 
+P    up 1	..DII...DLL.AABCP.J.BCPOJFFF.OJ....O C99 L99 O99 P99 
+O    up 2	..DII...DLLOAABCPOJ.BCPOJFFF..J..... C99 L99 O97 P99 
+F right 2	..DII...DLLOAABCPOJ.BCPOJ..FFFJ..... C99 L99 O97 P99 F98 
+B  down 2	..DII...DLLOAA.CPOJ..CPOJ.BFFFJ.B... C99 L99 B98 O97 P99 F98 
+D  down 2	...II....LLOAADCPOJ.DCPOJ.BFFFJ.B... D98 L99 O97 C99 P99 B98 F98 
+L  left 3	...II.LL...OAADCPOJ.DCPOJ.BFFFJ.B... D98 L96 O97 C99 P99 B98 F98 
+I  left 3	II....LL...OAADCPOJ.DCPOJ.BFFFJ.B... I97 L96 O97 D98 C99 P99 B98 F98 
+D    up 2	IID...LLD..OAA.CPOJ..CPOJ.BFFFJ.B... I97 L96 O97 D96 C99 P99 B98 F98 
+C    up 2	IIDC..LLDC.OAA..POJ...POJ.BFFFJ.B... I97 L96 O97 D96 C97 P99 B98 F98 
+P    up 2	IIDCP.LLDCPOAA...OJ....OJ.BFFFJ.B... I97 L96 O97 D96 C97 P97 B98 F98 
+O    up 1	IIDCPOLLDCPOAA...OJ.....J.BFFFJ.B... I97 L96 O96 D96 C97 P97 B98 F98 
+A right 3	IIDCPOLLDCPO...AAOJ.....J.BFFFJ.B... I97 L96 O96 A97 D96 C97 P97 B98 F98 
+B    up 2	IIDCPOLLDCPO..BAAOJ.B...J..FFFJ..... I97 L96 O96 A97 D96 C97 P97 B96 F98 
+F  left 1	IIDCPOLLDCPO..BAAOJ.B...J.FFF.J..... I97 L96 O96 A97 D96 C97 P97 B96 F97 
+O  down 3	IIDCP.LLDCP...BAA.J.B..OJ.FFFOJ....O I97 L96 O93 A97 D96 C97 P97 B96 F97 
+A right 1	IIDCP.LLDCP...B.AAJ.B..OJ.FFFOJ....O I97 L96 O93 A96 D96 C97 P97 B96 F97 
+
+Runtime: 8.62139630317688
+Search path length: 917
+
+[['I' 'I' 'D' 'C' 'P' '.']
+ ['L' 'L' 'D' 'C' 'P' '.']
+ ['.' '.' 'B' '.' 'A' 'A']
+ ['J' '.' 'B' '.' '.' 'O']
+ ['J' '.' 'F' 'F' 'F' 'O']
+ ['J' '.' '.' '.' '.' 'O']]
+-------------------------------------------------------

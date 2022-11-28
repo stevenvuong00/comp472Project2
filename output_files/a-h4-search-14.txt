@@ -1,0 +1,5 @@
+1 0 1	FFFTTT......AA..B.....B.......DDDJJJ 
+1 1 0	FFFTTT......AA........B.....B.DDDJJJ B99 
+2 1 1	FFFTTT.......AA.B.....B.......DDDJJJ A99 
+2 2 0	FFFTTT.........AA.....B.....B.DDDJJJ A97 B99 
+2 2 0	FFFTTT..........AA....B.....B.DDDJJJ A96 B99 

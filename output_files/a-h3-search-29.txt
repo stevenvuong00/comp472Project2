@@ -1,0 +1,5 @@
+3 0 3	VV....KK...L.AA..LE...D.E...D.EOOPPP 
+1 1 0	VV....KK.....AA...E...DLE...DLEOOPPP L98 
+1 1 0	VV...LKK...L.AA...E...D.E...D.EOOPPP L99 
+2 2 0	VV........KK.AA...E...DLE...DLEOOPPP K96 L98 
+2 2 0	VV....KK........AAE...DLE...DLEOOPPP L98 A97 

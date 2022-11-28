@@ -1,0 +1,33 @@
+1 0 1	Z...C.Z...C.Z.AAC.EEEB..Y..BDDY..... 
+2 1 1	Z.....Z...C.Z.AAC.EEEBC.Y..BDDY..... C99 
+2 1 1	Z...C.Z...C.ZAA.C.EEEB..Y..BDDY..... A99 
+2 1 1	Z...C.Z...C.Z.AAC.EEE...Y..BDDY..B.. B99 
+3 2 1	Z.....Z...C.ZAA.C.EEEBC.Y..BDDY..... C99 A99 
+3 2 1	Z..BC.Z..BC.ZAA.C.EEE...Y...DDY..... A99 B97 
+3 2 1	Z...C.Z...C.Z.AAC..EEE..Y..BDDY..B.. E99 B99 
+3 2 1	Z...C.Z...C.Z.AAC....EEEY..BDDY..B.. E97 B99 
+3 2 1	Z.....Z...C.Z.AAC.EEE.C.Y..BDDY..B.. C99 B99 
+3 2 1	Z...C.Z...C.ZAA.C.EEE...Y..BDDY..B.. A99 B99 
+3 2 1	Z...C.Z...C.Z.AAC...EEE.Y..BDDY..B.. E98 B99 
+4 3 1	Z..BC.Z..BC.ZAA.C...EEE.Y...DDY..... A99 E98 B97 
+4 3 1	Z..BC.Z..BC.ZAA.C....EEEY...DDY..... A99 E97 B97 
+4 3 1	Z..BC.Z..BC.ZAA.C.EEE...YDD...Y..... A99 B97 D97 
+4 4 0	Z..B..Z..B..ZAA...EEE.C.YDD.C.Y...C. C97 A99 B97 D97 
+4 3 1	Z..B..Z..BC.ZAA.C.EEE.C.Y...DDY..... C99 A99 B97 
+4 3 1	Z..BC.Z..BC.ZAA.C..EEE..Y...DDY..... A99 E99 B97 
+4 3 1	Z..BC.Z..BC.Z.AAC.EEE...Y...DDY..... A98 B97 
+4 3 1	Z...C.Z...C.Z.AAC.Y.EEE.Y..BDD...B.. E98 B99 Y99 
+4 3 1	Z...C.Z...C.ZAA.C..EEE..Y..BDDY..B.. A99 E99 B99 
+4 3 1	Z...C.Z...C.ZAA.C...EEE.Y..BDDY..B.. A99 E98 B99 
+4 3 1	....C.Z...C.Z.AAC.Z.EEE.Y..BDDY..B.. Z99 E98 B99 
+4 3 1	Z...C.Z...C.ZAA.C....EEEY..BDDY..B.. A99 E97 B99 
+4 3 1	....C.Z...C.Z.AAC.Z..EEEY..BDDY..B.. Z99 E97 B99 
+4 3 1	Z...C.Z...C.Z.AAC.YEEE..Y..BDD...B.. E99 B99 Y99 
+4 3 1	Z.....Z...C.ZAA.C.EEE.C.Y..BDDY..B.. C99 A99 B99 
+4 3 1	Z.....Z...C.Z.AAC..EEEC.Y..BDDY..B.. C99 E99 B99 
+4 3 1	Z...C.Z...C.Z.AAC.Y..EEEY..BDD...B.. E97 B99 Y99 
+4 3 1	....C.Z...C.Z.AAC.ZEEE..Y..BDDY..B.. Z99 E99 B99 
+4 3 1	Z..BC.Z..BC.ZAA.C.EEE...Y.DD..Y..... A99 B97 D98 
+4 4 0	Z..B..Z..B..ZAA...EEE.C.Y.DDC.Y...C. C97 A99 B97 D98 
+4 2 2	Z...C.Z..BC.ZAABC.EEE...Y...DDY..... A99 B98 
+5 5 0	Z..B..Z..B..Z...AAEEE.C.YDD.C.Y...C. C97 A96 B97 D97 

@@ -1,0 +1,43 @@
+Initial board configuration: .C....BC.PTUBAAPTUYYYOTU..DOLL..D...
+
+
+[['.' 'C' '.' '.' '.' '.']
+ ['B' 'C' '.' 'P' 'T' 'U']
+ ['B' 'A' 'A' 'P' 'T' 'U']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' '.' 'D' 'O' 'L' 'L']
+ ['.' '.' 'D' '.' '.' '.']]
+
+Car fuel available: {'C': 100, 'B': 100, 'P': 100, 'T': 100, 'U': 100, 'A': 100, 'Y': 100, 'O': 100, 'D': 100, 'L': 100}
+
+
+Solution path length:  16  moves
+Solution path: ['P    up 1', 'T    up 1', 'U    up 1', 'O  down 1', 'Y right 3', 'B  down 3', 'A  left 1', 'D    up 4', 'Y  left 3', 'U  down 1', 'O    up 2', 'L  left 3', 'T  down 3', 'O  down 2', 'U  down 2', 'A right 4']
+
+P    up 1	.C.P..BC.PTUBAA.TUYYYOTU..DOLL..D... P99 
+T    up 1	.C.PT.BC.PTUBAA.TUYYYO.U..DOLL..D... P99 T99 
+U    up 1	.C.PTUBC.PTUBAA.TUYYYO....DOLL..D... P99 T99 U99 
+O  down 1	.C.PTUBC.PTUBAA.TUYYY.....DOLL..DO.. P99 T99 U99 O99 
+Y right 3	.C.PTUBC.PTUBAA.TU...YYY..DOLL..DO.. P99 T99 U99 Y97 O99 
+B  down 3	.C.PTU.C.PTU.AA.TU...YYYB.DOLLB.DO.. B97 P99 T99 U99 Y97 O99 
+A  left 1	.C.PTU.C.PTUAA..TU...YYYB.DOLLB.DO.. B97 P99 T99 U99 A99 Y97 O99 
+D    up 4	.CDPTU.CDPTUAA..TU...YYYB..OLLB..O.. B97 P99 T99 U99 A99 Y97 O99 D96 
+Y  left 3	.CDPTU.CDPTUAA..TUYYY...B..OLLB..O.. B97 P99 T99 U99 A99 Y94 O99 D96 
+U  down 1	.CDPT..CDPTUAA..TUYYY..UB..OLLB..O.. B97 P99 T99 U98 A99 Y94 O99 D96 
+O    up 2	.CDPT..CDPTUAA.OTUYYYO.UB...LLB..... B97 P99 T99 U98 A99 Y94 O97 D96 
+L  left 3	.CDPT..CDPTUAA.OTUYYYO.UBLL...B..... B97 P99 T99 U98 A99 Y94 O97 D96 L97 
+T  down 3	.CDP...CDP.UAA.O.UYYYOTUBLL.T.B...T. B97 P99 T96 U98 A99 Y94 O97 D96 L97 
+O  down 2	.CDP...CDP.UAA...UYYY.TUBLLOT.B..OT. B97 P99 T96 U98 A99 Y94 O95 D96 L97 
+U  down 2	.CDP...CDP..AA....YYY.TUBLLOTUB..OTU B97 P99 T96 U96 A99 Y94 O95 D96 L97 
+A right 4	.CDP...CDP......AAYYY.TUBLLOTUB..OTU B97 P99 T96 U96 A95 Y94 O95 D96 L97 
+
+Runtime: 12.178948879241943
+Search path length: 1146
+
+[['.' 'C' 'D' 'P' '.' '.']
+ ['.' 'C' 'D' 'P' '.' '.']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['Y' 'Y' 'Y' '.' 'T' 'U']
+ ['B' 'L' 'L' 'O' 'T' 'U']
+ ['B' '.' '.' 'O' 'T' 'U']]
+-------------------------------------------------------

@@ -1,0 +1,49 @@
+Initial board configuration: .B....SB.CDESAACDEHHHGDE..VG....VWW.
+
+
+[['.' 'B' '.' '.' '.' '.']
+ ['S' 'B' '.' 'C' 'D' 'E']
+ ['S' 'A' 'A' 'C' 'D' 'E']
+ ['H' 'H' 'H' 'G' 'D' 'E']
+ ['.' '.' 'V' 'G' '.' '.']
+ ['.' '.' 'V' 'W' 'W' '.']]
+
+Car fuel available: {'B': 100, 'S': 100, 'C': 100, 'D': 100, 'E': 100, 'A': 100, 'H': 100, 'G': 100, 'V': 100, 'W': 100}
+
+[['.' 'B' '.' '.' '.' '.']
+ ['S' 'B' '.' 'C' 'D' 'E']
+ ['S' 'A' 'A' 'C' 'D' 'E']
+ ['H' 'H' 'H' 'G' 'D' 'E']
+ ['.' '.' 'V' 'G' '.' '.']
+ ['.' '.' 'V' 'W' 'W' '.']]
+
+Solution path length:  16  moves
+Solution path: ['C    up 1', 'E  down 2', 'D    up 1', 'E    up 3', 'W right 1', 'G  down 1', 'H right 3', 'S  down 3', 'A  left 1', 'V    up 4', 'H  left 3', 'G    up 1', 'W  left 3', 'D  down 3', 'E  down 3', 'A right 4']
+
+C    up 1	.B.C..SB.CDESAA.DEHHHGDE..VG....VWW. C99 
+E  down 2	.B.C..SB.CD.SAA.D.HHHGDE..VG.E..VWWE C99 E98 
+D    up 1	.B.CD.SB.CD.SAA.D.HHHG.E..VG.E..VWWE C99 D99 E98 
+E    up 3	.B.CDESB.CDESAA.DEHHHG....VG....VWW. C99 D99 E95 
+W right 1	.B.CDESB.CDESAA.DEHHHG....VG....V.WW C99 D99 E95 W99 
+G  down 1	.B.CDESB.CDESAA.DEHHH.....VG....VGWW C99 D99 E95 G99 W99 
+H right 3	.B.CDESB.CDESAA.DE...HHH..VG....VGWW C99 D99 E95 H97 G99 W99 
+S  down 3	.B.CDE.B.CDE.AA.DE...HHHS.VG..S.VGWW S97 C99 D99 E95 H97 G99 W99 
+A  left 1	.B.CDE.B.CDEAA..DE...HHHS.VG..S.VGWW S97 C99 D99 E95 A99 H97 G99 W99 
+V    up 4	.BVCDE.BVCDEAA..DE...HHHS..G..S..GWW S97 C99 D99 E95 A99 H97 G99 V96 W99 
+H  left 3	.BVCDE.BVCDEAA..DEHHH...S..G..S..GWW S97 C99 D99 E95 A99 H94 G99 V96 W99 
+G    up 1	.BVCDE.BVCDEAA..DEHHHG..S..G..S...WW S97 C99 D99 E95 A99 H94 G98 V96 W99 
+W  left 3	.BVCDE.BVCDEAA..DEHHHG..S..G..SWW... S97 C99 D99 E95 A99 H94 G98 V96 W96 
+D  down 3	.BVC.E.BVC.EAA...EHHHGD.S..GD.SWW.D. S97 C99 D96 E95 A99 H94 G98 V96 W96 
+E  down 3	.BVC...BVC..AA....HHHGDES..GDESWW.DE S97 C99 D96 E92 A99 H94 G98 V96 W96 
+A right 4	.BVC...BVC......AAHHHGDES..GDESWW.DE S97 C99 D96 E92 A95 H94 G98 V96 W96 
+
+Runtime: 20.318432807922363
+Search path length: 1460
+
+[['.' 'B' 'V' 'C' '.' '.']
+ ['.' 'B' 'V' 'C' '.' '.']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['H' 'H' 'H' 'G' 'D' 'E']
+ ['S' '.' '.' 'G' 'D' 'E']
+ ['S' 'W' 'W' '.' 'D' 'E']]
+-------------------------------------------------------

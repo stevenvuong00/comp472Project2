@@ -1,0 +1,46 @@
+Initial board configuration: ..DII...DCLLAABC.OJ.B.POJFFFPOJ.....
+
+
+[['.' '.' 'D' 'I' 'I' '.']
+ ['.' '.' 'D' 'C' 'L' 'L']
+ ['A' 'A' 'B' 'C' '.' 'O']
+ ['J' '.' 'B' '.' 'P' 'O']
+ ['J' 'F' 'F' 'F' 'P' 'O']
+ ['J' '.' '.' '.' '.' '.']]
+
+Car fuel available: {'D': 100, 'I': 100, 'C': 100, 'L': 100, 'A': 100, 'B': 100, 'O': 100, 'J': 100, 'P': 100, 'F': 100}
+
+
+Solution path length:  19  moves
+Solution path: ['O  down 1', 'C  down 1', 'L  left 1', 'O    up 2', 'P    up 1', 'F right 2', 'B  down 2', 'D  down 2', 'L  left 2', 'I  left 3', 'C    up 2', 'P    up 2', 'L  left 1', 'D    up 2', 'A right 3', 'B    up 2', 'F  left 2', 'O  down 2', 'A right 1']
+
+O  down 1	..DII...DCLLAABC..J.B.POJFFFPOJ....O O99 
+C  down 1	..DII...D.LLAABC..J.BCPOJFFFPOJ....O C99 O99 
+L  left 1	..DII...DLL.AABC..J.BCPOJFFFPOJ....O C99 L99 O99 
+O    up 2	..DII...DLLOAABC.OJ.BCPOJFFFP.J..... C99 L99 O97 
+P    up 1	..DII...DLLOAABCPOJ.BCPOJFFF..J..... C99 L99 O97 P99 
+F right 2	..DII...DLLOAABCPOJ.BCPOJ..FFFJ..... C99 L99 O97 P99 F98 
+B  down 2	..DII...DLLOAA.CPOJ..CPOJ.BFFFJ.B... C99 L99 B98 O97 P99 F98 
+D  down 2	...II....LLOAADCPOJ.DCPOJ.BFFFJ.B... D98 L99 O97 C99 P99 B98 F98 
+L  left 2	...II..LL..OAADCPOJ.DCPOJ.BFFFJ.B... D98 L97 O97 C99 P99 B98 F98 
+I  left 3	II.....LL..OAADCPOJ.DCPOJ.BFFFJ.B... I97 L97 O97 D98 C99 P99 B98 F98 
+C    up 2	II.C...LLC.OAAD.POJ.D.POJ.BFFFJ.B... I97 L97 O97 D98 C97 P99 B98 F98 
+P    up 2	II.CP..LLCPOAAD..OJ.D..OJ.BFFFJ.B... I97 L97 O97 D98 C97 P97 B98 F98 
+L  left 1	II.CP.LL.CPOAAD..OJ.D..OJ.BFFFJ.B... I97 L96 O97 D98 C97 P97 B98 F98 
+D    up 2	IIDCP.LLDCPOAA...OJ....OJ.BFFFJ.B... I97 L96 O97 D96 C97 P97 B98 F98 
+A right 3	IIDCP.LLDCPO...AAOJ....OJ.BFFFJ.B... I97 L96 O97 A97 D96 C97 P97 B98 F98 
+B    up 2	IIDCP.LLDCPO..BAAOJ.B..OJ..FFFJ..... I97 L96 O97 A97 D96 C97 P97 B96 F98 
+F  left 2	IIDCP.LLDCPO..BAAOJ.B..OJFFF..J..... I97 L96 O97 A97 D96 C97 P97 B96 F96 
+O  down 2	IIDCP.LLDCP...BAA.J.B..OJFFF.OJ....O I97 L96 O95 A97 D96 C97 P97 B96 F96 
+A right 1	IIDCP.LLDCP...B.AAJ.B..OJFFF.OJ....O I97 L96 O95 A96 D96 C97 P97 B96 F96 
+
+Runtime: 3.6025912761688232
+Search path length: 382
+
+[['I' 'I' 'D' 'C' 'P' '.']
+ ['L' 'L' 'D' 'C' 'P' '.']
+ ['.' '.' 'B' '.' 'A' 'A']
+ ['J' '.' 'B' '.' '.' 'O']
+ ['J' 'F' 'F' 'F' '.' 'O']
+ ['J' '.' '.' '.' '.' 'O']]
+-------------------------------------------------------

@@ -1,0 +1,28 @@
+6 0 6	..B..E..B..EAAB..ECCC........D.....D 
+7 1 6	..B.....B..EAAB..ECCC..E.....D.....D E99 
+7 1 6	..B..E..B..EAAB..E..CCC......D.....D C98 
+7 1 6	..B..E..B..EAAB..ECCC..D.....D...... D99 
+7 1 6	..B..E..B..EAAB..E.CCC.......D.....D C99 
+7 1 6	..B..E..B..EAAB..E...CCC.....D.....D C97 
+5 2 3	.....E.....EAA...E..BCCC..B..D..B..D B97 C97 
+6 3 3	.....E.....E.AA..E..BCCC..B..D..B..D B97 A99 C97 
+6 3 3	.....E.....E..AA.E..BCCC..B..D..B..D B97 A98 C97 
+6 3 3	.....E.....E...AAE..BCCC..B..D..B..D B97 A97 C97 
+7 4 3	.....E.....E..BAAE..BCCC..B..D.....D B96 A97 C97 
+7 4 3	.....E..B..E..BAAE..BCCC.....D.....D B95 A97 C97 
+7 4 3	..B..E..B..E..BAAE...CCC.....D.....D B94 A97 C97 
+8 2 6	..B.....B..EAAB..E..CCCE.....D.....D E99 C98 
+8 2 6	.....E.....EAAB..E..BCCC..B..D.....D B98 C97 
+8 5 3	..B..E..B..E..BAAE..CCC......D.....D B94 A97 C96 
+8 5 3	..B..E..B..E..BAAECCC........D.....D B94 A97 C94 
+8 2 6	..B..E..B..EAAB..E.CCC.D.....D...... C99 D99 
+8 5 3	..B..E..B..E..BAAE.CCC.......D.....D B94 A97 C95 
+8 2 6	..B.....B..EAAB..E.CCC.E.....D.....D E99 C99 
+8 2 6	.....E..B..EAAB..E..BCCC.....D.....D B99 C97 
+8 2 6	..B..E..B..EAAB..E..CCCD.....D...... C98 D99 
+9 6 3	..B.....B..E..BAAE..CCCE.....D.....D B94 E99 A97 C96 
+9 6 3	..B..E..B..E..BAAE..CCCD.....D...... B94 A97 C96 D99 
+9 6 3	..B..E..B..E..BAAECCC..D.....D...... B94 A97 C94 D99 
+9 6 3	..B..E..B..E..BAAE.CCC.D.....D...... B94 A97 C95 D99 
+9 6 3	..B.....B..E..BAAECCC..E.....D.....D B94 E99 A97 C94 
+9 6 3	..B.....B..E..BAAE.CCC.E.....D.....D B94 E99 A97 C95 

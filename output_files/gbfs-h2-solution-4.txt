@@ -1,0 +1,31 @@
+Initial board configuration: .OOTT.YIIIP.YAA.P.MCCHH.MUUU.L.KKEEL
+
+
+[['.' 'O' 'O' 'T' 'T' '.']
+ ['Y' 'I' 'I' 'I' 'P' '.']
+ ['Y' 'A' 'A' '.' 'P' '.']
+ ['M' 'C' 'C' 'H' 'H' '.']
+ ['M' 'U' 'U' 'U' '.' 'L']
+ ['.' 'K' 'K' 'E' 'E' 'L']]
+
+Car fuel available: {'O': 100, 'T': 100, 'Y': 100, 'I': 100, 'P': 100, 'A': 100, 'M': 100, 'C': 100, 'H': 100, 'U': 100, 'L': 100, 'K': 100, 'E': 100}
+
+
+Solution path length:  4  moves
+Solution path: ['O  left 1', 'T  left 1', 'P    up 1', 'A right 3']
+
+O  left 1	OO.TT.YIIIP.YAA.P.MCCHH.MUUU.L.KKEEL O99 
+T  left 1	OOTT..YIIIP.YAA.P.MCCHH.MUUU.L.KKEEL O99 T99 
+P    up 1	OOTTP.YIIIP.YAA...MCCHH.MUUU.L.KKEEL O99 T99 P99 
+A right 3	OOTTP.YIIIP.Y...AAMCCHH.MUUU.L.KKEEL O99 T99 P99 A97 
+
+Runtime: 2.601731777191162
+Search path length: 121
+
+[['O' 'O' 'T' 'T' 'P' '.']
+ ['Y' 'I' 'I' 'I' 'P' '.']
+ ['Y' '.' '.' '.' 'A' 'A']
+ ['M' 'C' 'C' 'H' 'H' '.']
+ ['M' 'U' 'U' 'U' '.' 'L']
+ ['.' 'K' 'K' 'E' 'E' 'L']]
+-------------------------------------------------------

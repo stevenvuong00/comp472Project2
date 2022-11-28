@@ -1,0 +1,32 @@
+Initial board configuration: FFFTTT....YOAAGHYO..GH........DDD...
+
+
+[['F' 'F' 'F' 'T' 'T' 'T']
+ ['.' '.' '.' '.' 'Y' 'O']
+ ['A' 'A' 'G' 'H' 'Y' 'O']
+ ['.' '.' 'G' 'H' '.' '.']
+ ['.' '.' '.' '.' '.' '.']
+ ['D' 'D' 'D' '.' '.' '.']]
+
+Car fuel available: {'F': 100, 'T': 100, 'Y': 100, 'O': 100, 'A': 100, 'G': 100, 'H': 100, 'D': 100}
+
+
+Solution path length:  5  moves
+Solution path: ['Y  down 3', 'H  down 1', 'O  down 3', 'G  down 1', 'A right 4']
+
+Y  down 3	FFFTTT.....OAAGH.O..GH......Y.DDD.Y. Y97 
+H  down 1	FFFTTT.....OAAG..O..GH.....HY.DDD.Y. Y97 H99 
+O  down 3	FFFTTT......AAG.....GH.....HYODDD.YO Y97 O97 H99 
+G  down 1	FFFTTT......AA......GH....GHYODDD.YO Y97 O97 G99 H99 
+A right 4	FFFTTT..........AA..GH....GHYODDD.YO Y97 O97 A96 G99 H99 
+
+Runtime: 0.6175298690795898
+Search path length: 52
+
+[['F' 'F' 'F' 'T' 'T' 'T']
+ ['.' '.' '.' '.' '.' '.']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['.' '.' 'G' 'H' '.' '.']
+ ['.' '.' 'G' 'H' 'Y' 'O']
+ ['D' 'D' 'D' '.' 'Y' 'O']]
+-------------------------------------------------------

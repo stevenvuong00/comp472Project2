@@ -1,0 +1,7 @@
+1 0 1	...B.....BCCAA.D..E.FDGGE.F...E.F... 
+1 1 0	...B.....BCCAA....E.FDGGE.FD..E.F... D99 
+1 1 0	...B.....BCCAA....E.F.GGE.FD..E.FD.. D98 
+2 2 0	...B.....BCC.AA...E.FDGGE.FD..E.F... A99 D99 
+2 2 0	...B.....BCC.AA...E.F.GGE.FD..E.FD.. A99 D98 
+2 2 0	...B.....BCC..AA..E.FDGGE.FD..E.F... A98 D99 
+2 2 0	...B.....BCC....AAE.FDGGE.FD..E.F... A96 D99 

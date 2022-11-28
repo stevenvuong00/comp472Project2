@@ -1,0 +1,49 @@
+Initial board configuration: .C....BC.PTUBAAPTUYYYOTU..DOLL..D...
+
+
+[['.' 'C' '.' '.' '.' '.']
+ ['B' 'C' '.' 'P' 'T' 'U']
+ ['B' 'A' 'A' 'P' 'T' 'U']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' '.' 'D' 'O' 'L' 'L']
+ ['.' '.' 'D' '.' '.' '.']]
+
+Car fuel available: {'C': 100, 'B': 100, 'P': 100, 'T': 100, 'U': 100, 'A': 100, 'Y': 100, 'O': 100, 'D': 100, 'L': 100}
+
+[['.' 'C' '.' '.' '.' '.']
+ ['B' 'C' '.' 'P' 'T' 'U']
+ ['B' 'A' 'A' 'P' 'T' 'U']
+ ['Y' 'Y' 'Y' 'O' 'T' 'U']
+ ['.' '.' 'D' 'O' 'L' 'L']
+ ['.' '.' 'D' '.' '.' '.']]
+
+Solution path length:  16  moves
+Solution path: ['P    up 1', 'T    up 1', 'U    up 1', 'O  down 1', 'Y right 3', 'B    up 1', 'A  left 1', 'D    up 4', 'Y  left 3', 'O    up 2', 'L  left 2', 'T  down 3', 'U  down 3', 'L  left 2', 'O  down 2', 'A right 4']
+
+P    up 1	.C.P..BC.PTUBAA.TUYYYOTU..DOLL..D... P99 
+T    up 1	.C.PT.BC.PTUBAA.TUYYYO.U..DOLL..D... P99 T99 
+U    up 1	.C.PTUBC.PTUBAA.TUYYYO....DOLL..D... P99 T99 U99 
+O  down 1	.C.PTUBC.PTUBAA.TUYYY.....DOLL..DO.. P99 T99 U99 O99 
+Y right 3	.C.PTUBC.PTUBAA.TU...YYY..DOLL..DO.. P99 T99 U99 Y97 O99 
+B    up 1	BC.PTUBC.PTU.AA.TU...YYY..DOLL..DO.. B99 P99 T99 U99 Y97 O99 
+A  left 1	BC.PTUBC.PTUAA..TU...YYY..DOLL..DO.. B99 P99 T99 U99 A99 Y97 O99 
+D    up 4	BCDPTUBCDPTUAA..TU...YYY...OLL...O.. B99 P99 T99 U99 A99 Y97 O99 D96 
+Y  left 3	BCDPTUBCDPTUAA..TUYYY......OLL...O.. B99 P99 T99 U99 A99 Y94 O99 D96 
+O    up 2	BCDPTUBCDPTUAA.OTUYYYO......LL...... B99 P99 T99 U99 A99 Y94 O97 D96 
+L  left 2	BCDPTUBCDPTUAA.OTUYYYO....LL........ B99 P99 T99 U99 A99 Y94 O97 D96 L98 
+T  down 3	BCDP.UBCDP.UAA.O.UYYYOT...LLT.....T. B99 P99 T96 U99 A99 Y94 O97 D96 L98 
+U  down 3	BCDP..BCDP..AA.O..YYYOTU..LLTU....TU B99 P99 T96 U96 A99 Y94 O97 D96 L98 
+L  left 2	BCDP..BCDP..AA.O..YYYOTULL..TU....TU B99 P99 T96 U96 A99 Y94 O97 D96 L96 
+O  down 2	BCDP..BCDP..AA....YYY.TULL.OTU...OTU B99 P99 T96 U96 A99 Y94 O95 D96 L96 
+A right 4	BCDP..BCDP......AAYYY.TULL.OTU...OTU B99 P99 T96 U96 A95 Y94 O95 D96 L96 
+
+Runtime: 13.913437604904175
+Search path length: 1158
+
+[['B' 'C' 'D' 'P' '.' '.']
+ ['B' 'C' 'D' 'P' '.' '.']
+ ['.' '.' '.' '.' 'A' 'A']
+ ['Y' 'Y' 'Y' '.' 'T' 'U']
+ ['L' 'L' '.' 'O' 'T' 'U']
+ ['.' '.' '.' 'O' 'T' 'U']]
+-------------------------------------------------------

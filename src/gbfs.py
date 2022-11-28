@@ -15,8 +15,8 @@ class GBFS:
         self.solution_path = []
         self.solution_cost = 0
         self.heuristic = heuristic
-        # self.output_search_file = "output_files/ucs-search-" + str(puzzle_count) + ".txt"
-        self.output_search_file = "../output_files/gbfs-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
+        # self.output_search_file = "../output_files/gbfs-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
+        self.output_search_file = "output_files/gbfs-" + self.heuristic + "-search-" + str(puzzle_count) + ".txt"
         self.summary_data = [str(puzzle_count), "GBFS", self.heuristic]  # See below
         # ['#', Algorithm', 'Heuristic', 'Length of the Solution','Length of the Search Path', 'Execution Time']
 
@@ -62,22 +62,9 @@ class GBFS:
                 # check if the generated child is in closed list 
                 if not self.array_to_string(child[0]) in self.visited_boards:
                     in_open = False
-                    for index, open_node in enumerate(self.open.queue):
+                    for open_node in self.open.queue:
                         if np.array_equal(open_node[1].grid, child[0]):
                             in_open = True
-                            child_board = Board(child[0], child[2], child[0])
-                            hn = child_board.apply_heuristic(heuristic)
-                            gn = 0
-                            fn = hn + gn
-                            child_hn = child_board.apply_heuristic(heuristic)
-                            child_gn = parent_gn + 1
-                            child_fn = child_hn + child_gn
-                            child_board.fn = child_fn
-                            child_board.gn = child_gn
-                            if open_node[0] > child_fn:
-                                self.open.get(index)
-                                self.open.put(
-                                    (child_fn, child_board, current_board, child_gn, child_hn, child[1], child[2]))
                             break
                     if in_open is False:
                         child_board = Board(child[0], child[2], child[0])

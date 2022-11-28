@@ -1,0 +1,50 @@
+Initial board configuration: ..D.....D...AADG.....GB.ECCGB.E.FFB.
+
+
+[['.' '.' 'D' '.' '.' '.']
+ ['.' '.' 'D' '.' '.' '.']
+ ['A' 'A' 'D' 'G' '.' '.']
+ ['.' '.' '.' 'G' 'B' '.']
+ ['E' 'C' 'C' 'G' 'B' '.']
+ ['E' '.' 'F' 'F' 'B' '.']]
+
+Car fuel available: {'D': 100, 'A': 100, 'G': 100, 'B': 100, 'E': 100, 'C': 100, 'F': 100}
+
+[['.' '.' 'D' '.' '.' '.']
+ ['.' '.' 'D' '.' '.' '.']
+ ['A' 'A' 'D' 'G' '.' '.']
+ ['.' '.' '.' 'G' 'B' '.']
+ ['E' 'C' 'C' 'G' 'B' '.']
+ ['E' '.' 'F' 'F' 'B' '.']]
+
+Solution path length:  17  moves
+Solution path: ['G    up 1', 'B    up 2', 'F right 1', 'C right 3', 'D  down 3', 'A right 1', 'E    up 4', 'A  left 1', 'D    up 3', 'C  left 4', 'F  left 3', 'G  down 2', 'D  down 3', 'B  down 2', 'A right 3', 'D    up 3', 'A right 1']
+
+G    up 1	..D.....DG..AADG.....GB.ECC.B.E.FFB. G99 
+B    up 2	..D.....DGB.AADGB....GB.ECC...E.FF.. G99 B98 
+F right 1	..D.....DGB.AADGB....GB.ECC...E..FF. G99 B98 F99 
+C right 3	..D.....DGB.AADGB....GB.E...CCE..FF. G99 B98 C97 F99 
+D  down 3	.........GB.AA.GB...DGB.E.D.CCE.DFF. D97 G99 B98 C97 F99 
+A right 1	.........GB..AAGB...DGB.E.D.CCE.DFF. D97 G99 B98 A99 C97 F99 
+E    up 4	E.....E..GB..AAGB...DGB...D.CC..DFF. D97 G99 B98 A99 E96 C97 F99 
+A  left 1	E.....E..GB.AA.GB...DGB...D.CC..DFF. D97 G99 B98 A98 E96 C97 F99 
+D    up 3	E.D...E.DGB.AADGB....GB.....CC...FF. D94 G99 B98 A98 E96 C97 F99 
+C  left 4	E.D...E.DGB.AADGB....GB.CC.......FF. D94 G99 B98 A98 E96 C93 F99 
+F  left 3	E.D...E.DGB.AADGB....GB.CC....FF.... D94 G99 B98 A98 E96 C93 F96 
+G  down 2	E.D...E.D.B.AAD.B....GB.CC.G..FF.G.. D94 G97 B98 A98 E96 C93 F96 
+D  down 3	E.....E...B.AA..B...DGB.CCDG..FFDG.. D91 G97 B98 A98 E96 C93 F96 
+B  down 2	E.....E.....AA......DGB.CCDGB.FFDGB. D91 G97 B96 A98 E96 C93 F96 
+A right 3	E.....E........AA...DGB.CCDGB.FFDGB. D91 G97 B96 A95 E96 C93 F96 
+D    up 3	E.D...E.D.....DAA....GB.CC.GB.FF.GB. D88 G97 B96 A95 E96 C93 F96 
+A right 1	E.D...E.D.....D.AA...GB.CC.GB.FF.GB. D88 G97 B96 A94 E96 C93 F96 
+
+Runtime: 13.41500997543335
+Search path length: 1749
+
+[['E' '.' 'D' '.' '.' '.']
+ ['E' '.' 'D' '.' '.' '.']
+ ['.' '.' 'D' '.' 'A' 'A']
+ ['.' '.' '.' 'G' 'B' '.']
+ ['C' 'C' '.' 'G' 'B' '.']
+ ['F' 'F' '.' 'G' 'B' '.']]
+-------------------------------------------------------
