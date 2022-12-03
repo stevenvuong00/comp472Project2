@@ -8,3 +8,6 @@ To run, simply make sure that the path in the run() method is the correct one an
 The path is defaulted to "input_files/50_board_inputs.txt" and can be changed whenever.
 
 The puzzles will be parsed and will run all of them sequentially.
+
+The output files will be in the "output_files" folder.
+The analysis files will be in the "analysis" folder.
